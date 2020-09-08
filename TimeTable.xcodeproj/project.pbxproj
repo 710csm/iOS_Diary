@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02CFEB462507A3E900BB8E48 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CFEB452507A3E900BB8E48 /* ComposeViewController.swift */; };
+		02CFEB482507C96400BB8E48 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CFEB472507C96400BB8E48 /* PreviewViewController.swift */; };
 		02FC313125060926003050A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FC313025060926003050A5 /* AppDelegate.swift */; };
 		02FC313325060926003050A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FC313225060926003050A5 /* SceneDelegate.swift */; };
 		02FC313525060926003050A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FC313425060926003050A5 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		02CFEB452507A3E900BB8E48 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		02CFEB472507C96400BB8E48 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		02FC312D25060926003050A5 /* TimeTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02FC313025060926003050A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02FC313225060926003050A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				02FC313025060926003050A5 /* AppDelegate.swift */,
 				02FC313225060926003050A5 /* SceneDelegate.swift */,
 				02FC313425060926003050A5 /* ViewController.swift */,
+				02CFEB472507C96400BB8E48 /* PreviewViewController.swift */,
 				02FC313625060926003050A5 /* Main.storyboard */,
 				02CFEB452507A3E900BB8E48 /* ComposeViewController.swift */,
 				02FC313C25060927003050A5 /* Assets.xcassets */,
@@ -217,6 +220,7 @@
 				02FC313B25060926003050A5 /* TimeTable.xcdatamodeld in Sources */,
 				02FC313125060926003050A5 /* AppDelegate.swift in Sources */,
 				02FC313325060926003050A5 /* SceneDelegate.swift in Sources */,
+				02CFEB482507C96400BB8E48 /* PreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

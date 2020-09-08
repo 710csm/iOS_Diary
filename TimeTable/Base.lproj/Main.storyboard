@@ -22,6 +22,7 @@
                                     <navigationItem title="Title" id="QSO-F4-57N">
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="I5W-Un-Ndt">
                                             <connections>
+                                                <action selector="add:" destination="BYZ-38-t0r" id="vrM-sl-cyf"/>
                                                 <segue destination="cLo-fo-YLM" kind="presentation" id="9p3-QM-CfL"/>
                                             </connections>
                                         </barButtonItem>
@@ -32,15 +33,38 @@
                                 <rect key="frame" x="20" y="88" width="374" height="452"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="hY7-mk-7P3"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="add" destination="I5W-Un-Ndt" id="xKy-IQ-hBu"/>
+                        <outlet property="fsCalendar" destination="wNQ-6C-3IL" id="Ize-q5-G23"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
+        </scene>
+        <!--Preview View Controller-->
+        <scene sceneID="leA-UM-qqW">
+            <objects>
+                <viewController id="mkX-1s-S2r" customClass="PreviewViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="94M-TL-ltf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="iwH-0F-Ua4"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pSG-PY-ufn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yZj-c3-VaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="515"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="35T-2C-Iki">
@@ -89,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tpD-ll-XdZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1871.0144927536232" y="129.91071428571428"/>
+            <point key="canvasLocation" x="1872" y="-210"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UiL-Sj-If4">
@@ -107,7 +131,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZ8-8z-fcf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="962" y="130"/>
+            <point key="canvasLocation" x="1012" y="-209"/>
         </scene>
     </scenes>
 </document>

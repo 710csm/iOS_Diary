@@ -11,19 +11,47 @@ import FSCalendar
 
 class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
 
+    // MARK: Properties
+    @IBOutlet weak var fsCalendar: FSCalendar!
+    @IBOutlet weak var add: UIBarButtonItem!
+    var selectedDate: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        fsCalendar.delegate = self
+        fsCalendar.dataSource = self
+        
+        guard let _ = selectedDate else{
+            add.isEnabled = false
+            return
+        }
+    }
+    
+    // MARK: FSCalendar
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+        
+        selectedDate = date
+        add.isEnabled = true
+        
+        presentPreviewModal()
+        
+        return true
     }
     
     func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
-        let ac = UIAlertController(title: "Hello!", message: "This is a test.", preferredStyle: .actionSheet)
-       
-        let popover = ac.popoverPresentationController
-        popover?.sourceView = view
-        popover?.sourceRect = CGRect(x: 32, y: 32, width: 64, height: 64)
-
-        present(ac, animated: true)
+        
+    }
+    
+    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    }
+    
+    // MARK: Method
+    func presentPreviewModal(){
+        let modalViewController = PreviewViewController()
+        modalViewController.definesPresentationContext = true
+        modalViewController.modalPresentationStyle = .overCurrentContext
+        navigationController?.present(modalViewController, animated: true, completion: nil)
     }
     
 }
