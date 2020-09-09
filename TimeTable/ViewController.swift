@@ -14,6 +14,10 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     // MARK: Properties
     @IBOutlet weak var fsCalendar: FSCalendar!
     @IBOutlet weak var add: UIBarButtonItem!
+    @IBOutlet weak var delete: UIToolbar!
+    @IBOutlet weak var edit: UIToolbar!
+    @IBOutlet weak var share: UIToolbar!
+    
     var selectedDate: Date?
     
     override func viewDidLoad() {
@@ -24,6 +28,9 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         
         guard let _ = selectedDate else{
             add.isEnabled = false
+            delete.isHidden = true
+            edit.isHidden = true
+            share.isHidden = true
             return
         }
     }
@@ -32,7 +39,11 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
         
         selectedDate = date
+        
         add.isEnabled = true
+        delete.isHidden = false
+        edit.isHidden = false
+        share.isHidden = false
         
         presentPreviewModal()
         
