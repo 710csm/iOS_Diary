@@ -7,29 +7,41 @@
 //
 
 import UIKit
+import Firebase
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextFieldDelegate {
 
+    
+    // MARK: Properties
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var contentTextField: UITextView!
+    
+    let formatter:DateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.formatter.dateFormat = "yyyy-MM-dd"
+        dateLabel.text = formatter.string(from: ViewController.selectedDate!)
+        
+        self.titleTextField.delegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        self.titleTextField.becomeFirstResponder()
     }
-    */
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.titleTextField.resignFirstResponder()
+    }
     
     // MARK: Action Button
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func save(_ sender: Any) {
+    }
+    
 
 }

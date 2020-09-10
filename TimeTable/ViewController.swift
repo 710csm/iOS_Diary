@@ -18,15 +18,15 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     @IBOutlet weak var edit: UIToolbar!
     @IBOutlet weak var share: UIToolbar!
     
-    var selectedDate: Date?
+    var cvc: ComposeViewController?
+    static var selectedDate: Date? = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         fsCalendar.delegate = self
         fsCalendar.dataSource = self
         
-        guard let _ = selectedDate else{
+        guard let _ = ViewController.selectedDate else{
             add.isEnabled = false
             delete.isHidden = true
             edit.isHidden = true
@@ -38,31 +38,20 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     // MARK: FSCalendar
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
         
-        selectedDate = date
+        ViewController.selectedDate = date
         
         add.isEnabled = true
         delete.isHidden = false
         edit.isHidden = false
         share.isHidden = false
         
-        presentPreviewModal()
-        
         return true
     }
     
     func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
-        
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-    }
-    
-    // MARK: Method
-    func presentPreviewModal(){
-        let modalViewController = PreviewViewController()
-        modalViewController.definesPresentationContext = true
-        modalViewController.modalPresentationStyle = .overCurrentContext
-        navigationController?.present(modalViewController, animated: true, completion: nil)
     }
     
 }
