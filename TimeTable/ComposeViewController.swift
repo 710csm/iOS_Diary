@@ -41,6 +41,20 @@ class ComposeViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func save(_ sender: Any) {
+        var ref = Database.database().reference()
+        //ref.child("날짜").setValue(dateLabel.text)
+        ref.child(dateLabel.text!).child("제목").setValue(titleTextField.text)
+        ref.child(dateLabel.text!).child("내용").setValue(contentTextField.text)
+        
+        doneAlert()
+    }
+    
+    func doneAlert(){
+        let alert = UIAlertController(title: "저장", message: "저장되었습니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
 

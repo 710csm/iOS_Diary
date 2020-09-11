@@ -8,7 +8,7 @@
 
 import UIKit
 import FSCalendar
-
+import FirebaseDatabase
 class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
 
     // MARK: Properties
@@ -19,7 +19,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     @IBOutlet weak var share: UIToolbar!
     
     var cvc: ComposeViewController?
-    static var selectedDate: Date? = Date()
+    static var selectedDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
