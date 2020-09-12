@@ -70,6 +70,7 @@
                         <outlet property="delete" destination="Dry-SQ-6Pz" id="IHf-VN-stS"/>
                         <outlet property="edit" destination="Dry-SQ-6Pz" id="BX5-uq-MfM"/>
                         <outlet property="fsCalendar" destination="wNQ-6C-3IL" id="Ize-q5-G23"/>
+                        <outlet property="mainText" destination="nkG-AQ-yWf" id="gij-ES-uo3"/>
                         <outlet property="share" destination="Dry-SQ-6Pz" id="3Ma-is-GVx"/>
                     </connections>
                 </viewController>

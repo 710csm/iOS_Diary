@@ -11,13 +11,14 @@ import Firebase
 
 class ComposeViewController: UIViewController, UITextFieldDelegate {
 
-    
     // MARK: Properties
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextField: UITextView!
     
     let formatter:DateFormatter = DateFormatter()
+    var arrValue = [String]()
+    var arrDate = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +42,23 @@ class ComposeViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func save(_ sender: Any) {
-        var ref = Database.database().reference()
-        //ref.child("날짜").setValue(dateLabel.text)
-        ref.child(dateLabel.text!).child("제목").setValue(titleTextField.text)
-        ref.child(dateLabel.text!).child("내용").setValue(contentTextField.text)
+        arrValue.append(dateLabel.text!)
+        arrValue.append(titleTextField.text!)
+        arrValue.append(contentTextField.text)
+        
+        let ref = Database.database().reference()
+        ref.child("diary").child(dateLabel.text!).setValue(arrValue)
+        
+        ref.child("날짜").observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let arr = snapshot.value as? [String] else{
+                return
+            }
+            self.arrDate = arr
+            self.arrDate.append(self.dateLabel.text!)
+            ref.child("날짜").setValue(self.arrDate)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
         doneAlert()
     }

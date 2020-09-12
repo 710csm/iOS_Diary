@@ -8,7 +8,8 @@
 
 import UIKit
 import FSCalendar
-import FirebaseDatabase
+import Firebase
+
 class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
 
     // MARK: Properties
@@ -17,22 +18,41 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     @IBOutlet weak var delete: UIToolbar!
     @IBOutlet weak var edit: UIToolbar!
     @IBOutlet weak var share: UIToolbar!
+    @IBOutlet weak var mainText: UITextView!
     
+    var arrDate = [String]()
     var cvc: ComposeViewController?
     static var selectedDate: Date?
+    let formatter:DateFormatter = DateFormatter()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let ref = Database.database().reference()
+        ref.child("날짜").observeSingleEvent(of: .value) { snapshot in
+            guard let arr = snapshot.value as? [String] else{
+                return
+            }
+            DispatchQueue.main.async {
+                self.arrDate = arr
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fsCalendar.delegate = self
         fsCalendar.dataSource = self
+        fsCalendar.locale = Locale(identifier: "ko_KR")
+        
+        self.formatter.dateFormat = "yyyy-MM-dd"
         
         guard let _ = ViewController.selectedDate else{
             add.isEnabled = false
-            delete.isHidden = true
-            edit.isHidden = true
-            share.isHidden = true
+            disableButton()
             return
         }
+    
     }
     
     // MARK: FSCalendar
@@ -40,10 +60,21 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         
         ViewController.selectedDate = date
         
-        add.isEnabled = true
-        delete.isHidden = false
-        edit.isHidden = false
-        share.isHidden = false
+        let ref = Database.database().reference()
+        ref.child("diary").child(formatter.string(from: date)).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let arr = snapshot.value as? [String] else{
+                self.mainText.text = ""
+                self.disableButton()
+                self.add.isEnabled = true
+                return
+            }
+            self.mainText.text = arr[2]
+            self.activeButton()
+            self.add.isEnabled = false
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
         return true
     }
@@ -54,5 +85,33 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
     }
     
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        for i in self.arrDate {
+            print(i)
+        }
+        
+        if self.arrDate.contains(formatter.string(from: date)){
+            return 1
+        }else{
+            return 0
+        }
+    }
+    
+    // MARK: func Method
+    func saveDate(arrDate: [String]){
+        self.arrDate = arrDate
+    }
+    
+    func activeButton(){
+        delete.isHidden = false
+        edit.isHidden = false
+        share.isHidden = false
+    }
+    
+    func disableButton(){
+        delete.isHidden = true
+        edit.isHidden = true
+        share.isHidden = true
+    }
+    
 }
-
