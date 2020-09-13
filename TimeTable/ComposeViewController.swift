@@ -65,7 +65,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate {
     
     func doneAlert(){
         let alert = UIAlertController(title: "저장", message: "저장되었습니다.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "확인", style: .default){
+            [weak self] (action) in
+            self?.dismiss(animated: true, completion: nil)
+        }
         
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
