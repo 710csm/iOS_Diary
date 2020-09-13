@@ -23,12 +23,13 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     var arrDate = [String]()
     var cvc: ComposeViewController?
     static var selectedDate: Date?
+    
     let formatter:DateFormatter = DateFormatter()
+    let ref = Database.database().reference()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let ref = Database.database().reference()
         ref.child("날짜").observeSingleEvent(of: .value) { snapshot in
             guard let arr = snapshot.value as? [String] else{
                 return
@@ -52,7 +53,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             disableButton()
             return
         }
-    
     }
     
     // MARK: FSCalendar
@@ -60,7 +60,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         
         ViewController.selectedDate = date
         
-        let ref = Database.database().reference()
         ref.child("diary").child(formatter.string(from: date)).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let arr = snapshot.value as? [String] else{
                 self.mainText.text = ""
@@ -97,6 +96,28 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         }
     }
     
+    // MARK: Action Method
+    @IBAction func deleteData(_ sender: Any) {
+        let desertRef = ref.child("diary").child(formatter.string(from: ViewController.selectedDate!))
+        
+        let alert = UIAlertController(title: "삭제 확인", message: "일기를 삭제하겠습니까?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "삭제", style: .destructive){
+            [weak self] (action) in
+            // Delete the file
+            desertRef.removeValue()
+            self?.mainText.text = ""
+            self?.disableButton()
+            self?.add.isEnabled = true
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
     // MARK: func Method
     func saveDate(arrDate: [String]){
         self.arrDate = arrDate
@@ -113,5 +134,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         edit.isHidden = true
         share.isHidden = true
     }
+
     
 }

@@ -50,6 +50,9 @@
                                 <items>
                                     <barButtonItem systemItem="trash" id="2pp-aa-TPm">
                                         <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="deleteData:" destination="BYZ-38-t0r" id="WU0-OV-vaQ"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="IC0-EF-HNN"/>
                                     <barButtonItem systemItem="compose" id="y7v-s8-dQy">
