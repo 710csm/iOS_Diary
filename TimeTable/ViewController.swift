@@ -38,6 +38,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
                 self.arrDate = arr
             }
         }
+    
     }
     
     override func viewDidLoad() {
@@ -53,6 +54,16 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             disableButton()
             return
         }
+        
+        
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
+    override var prefersStatusBarHidden: Bool {
+        return false
     }
     
     // MARK: FSCalendar
@@ -85,9 +96,9 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        for i in self.arrDate {
-            print(i)
-        }
+//        for i in self.arrDate {
+//            print(i)
+//        }
         
         if self.arrDate.contains(formatter.string(from: date)){
             return 1
@@ -134,6 +145,14 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         edit.isHidden = true
         share.isHidden = true
     }
-
-    
+        
 }
+
+extension UIApplication {
+
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
+
+}
+
