@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,6 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="barTintColor" name="MyColor"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </textAttributes>
@@ -93,14 +95,60 @@
                     <view key="view" contentMode="scaleToFill" id="94M-TL-ltf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Jy-5d-kJ1">
+                                <rect key="frame" x="79" y="112" width="315" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-Un-k6B">
+                                <rect key="frame" x="20" y="154" width="374" height="654"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciJ-ia-O3D">
+                                <rect key="frame" x="20" y="72" width="199" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="제목:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCx-WJ-THc">
+                                <rect key="frame" x="20" y="114" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="iwH-0F-Ua4"/>
                     </view>
-                    <navigationItem key="navigationItem" id="pSG-PY-ufn"/>
+                    <navigationItem key="navigationItem" id="pSG-PY-ufn">
+                        <barButtonItem key="leftBarButtonItem" title="취소" id="JBH-9b-pEF">
+                            <connections>
+                                <action selector="cancel:" destination="mkX-1s-S2r" id="EGZ-Yu-n1y"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="저장" id="Ujy-Cd-kyd">
+                            <connections>
+                                <action selector="save:" destination="mkX-1s-S2r" id="2iA-fk-UWY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentText" destination="REQ-Un-k6B" id="8l5-P1-6RW"/>
+                        <outlet property="date" destination="ciJ-ia-O3D" id="tB3-84-zPy"/>
+                        <outlet property="titleText" destination="1Jy-5d-kJ1" id="ayz-aV-JXf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yZj-c3-VaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1921.7391304347827" y="514.95535714285711"/>
+            <point key="canvasLocation" x="1871" y="515"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="35T-2C-Iki">
@@ -143,13 +191,13 @@
                         <viewLayoutGuide key="safeArea" id="6GP-CN-v15"/>
                     </view>
                     <navigationItem key="navigationItem" id="qbE-IR-2Mi">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="SaD-Pf-rpT">
+                        <barButtonItem key="leftBarButtonItem" title="취소" id="SaD-Pf-rpT">
                             <connections>
                                 <action selector="cancel:" destination="Kfq-Sz-cqW" id="S4B-ci-HKf"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="save" id="YkE-zL-F3w">
+                            <barButtonItem title="저장" id="YkE-zL-F3w">
                                 <connections>
                                     <action selector="save:" destination="Kfq-Sz-cqW" id="GjJ-Hl-blz"/>
                                 </connections>
@@ -205,4 +253,9 @@
             <point key="canvasLocation" x="1011.5942028985507" y="514.95535714285711"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="MyColor">
+            <color red="0.27450980392156865" green="0.70196078431372544" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

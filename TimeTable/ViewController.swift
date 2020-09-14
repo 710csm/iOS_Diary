@@ -30,7 +30,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        ref.child("날짜").observeSingleEvent(of: .value) { snapshot in
+        ref.child("diary").observeSingleEvent(of: .value) { snapshot in
             guard let arr = snapshot.value as? [String] else{
                 return
             }
@@ -38,7 +38,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
                 self.arrDate = arr
             }
         }
-    
+        
     }
     
     override func viewDidLoad() {
@@ -54,16 +54,14 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             disableButton()
             return
         }
-        
-        
+        let navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.tintColor = UIColor(named: "MyColor")
+        navigationBarAppearace.barTintColor = UIColor(named: "MyColor")
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent
-    }
-    override var prefersStatusBarHidden: Bool {
-        return false
     }
     
     // MARK: FSCalendar
@@ -109,13 +107,14 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     
     // MARK: Action Method
     @IBAction func deleteData(_ sender: Any) {
-        let desertRef = ref.child("diary").child(formatter.string(from: ViewController.selectedDate!))
+        let diaryRef = ref.child("diary").child(formatter.string(from: ViewController.selectedDate!))
         
         let alert = UIAlertController(title: "삭제 확인", message: "일기를 삭제하겠습니까?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "삭제", style: .destructive){
             [weak self] (action) in
             // Delete the file
-            desertRef.removeValue()
+            diaryRef.removeValue()
+            
             self?.mainText.text = ""
             self?.disableButton()
             self?.add.isEnabled = true
@@ -149,10 +148,8 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
 }
 
 extension UIApplication {
-
     var statusBarView: UIView? {
         return value(forKey: "statusBar") as? UIView
     }
-
 }
 
