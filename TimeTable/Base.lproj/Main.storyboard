@@ -16,9 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="grS-m4-15y">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grS-m4-15y">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="barTintColor" name="MyColor"/>
                                 <textAttributes key="titleTextAttributes">
@@ -35,25 +34,18 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wNQ-6C-3IL" customClass="FSCalendar">
-                                <rect key="frame" x="20" y="88" width="374" height="452"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" restorationIdentifier="calender" translatesAutoresizingMaskIntoConstraints="NO" id="wNQ-6C-3IL" customClass="FSCalendar">
+                                <rect key="frame" x="20" y="88" width="374" height="400"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="QVh-tM-6An"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="hY7-mk-7P3"/>
                                 </connections>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nkG-AQ-yWf">
-                                <rect key="frame" x="20" y="560" width="374" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dry-SQ-6Pz">
-                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dry-SQ-6Pz">
+                                <rect key="frame" x="0.0" y="820" width="414" height="49"/>
                                 <items>
                                     <barButtonItem systemItem="trash" id="2pp-aa-TPm">
                                         <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,20 +60,50 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bq3-sa-D0d"/>
-                                    <barButtonItem systemItem="action" id="awI-kn-swV"/>
+                                    <barButtonItem systemItem="action" id="awI-kn-swV">
+                                        <connections>
+                                            <action selector="share:" destination="BYZ-38-t0r" id="3JG-fM-5IB"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nkG-AQ-yWf">
+                                <rect key="frame" x="20" y="509" width="374" height="299"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="299" id="N9T-YM-cOA"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Dry-SQ-6Pz" firstAttribute="centerX" secondItem="nkG-AQ-yWf" secondAttribute="centerX" id="6dI-aB-n8b"/>
+                            <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="92e-MI-tcB"/>
+                            <constraint firstItem="nkG-AQ-yWf" firstAttribute="top" secondItem="wNQ-6C-3IL" secondAttribute="bottom" constant="21" id="FCd-W6-zvJ"/>
+                            <constraint firstItem="grS-m4-15y" firstAttribute="leading" secondItem="Dry-SQ-6Pz" secondAttribute="leading" id="G8Y-yr-LfR"/>
+                            <constraint firstItem="grS-m4-15y" firstAttribute="trailing" secondItem="Dry-SQ-6Pz" secondAttribute="trailing" id="Imj-TN-TTM"/>
+                            <constraint firstItem="grS-m4-15y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Vrn-aX-XSz"/>
+                            <constraint firstItem="grS-m4-15y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="WKZ-MW-for"/>
+                            <constraint firstItem="wNQ-6C-3IL" firstAttribute="top" secondItem="grS-m4-15y" secondAttribute="bottom" id="d69-Vz-uEi"/>
+                            <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="nkG-AQ-yWf" secondAttribute="leading" id="eF1-iy-3mL"/>
+                            <constraint firstItem="Dry-SQ-6Pz" firstAttribute="top" secondItem="nkG-AQ-yWf" secondAttribute="bottom" constant="12" id="eQD-ws-Dc6"/>
+                            <constraint firstAttribute="bottom" secondItem="Dry-SQ-6Pz" secondAttribute="bottom" priority="500" constant="27" id="eXk-5v-Bqd"/>
+                            <constraint firstItem="wNQ-6C-3IL" firstAttribute="trailing" secondItem="nkG-AQ-yWf" secondAttribute="trailing" id="kzc-OR-BvE"/>
+                            <constraint firstItem="wNQ-6C-3IL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="vJ0-xN-evM"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="add" destination="I5W-Un-Ndt" id="xKy-IQ-hBu"/>
+                        <outlet property="constraintHeight" destination="QVh-tM-6An" id="MSL-FA-voI"/>
                         <outlet property="delete" destination="Dry-SQ-6Pz" id="IHf-VN-stS"/>
                         <outlet property="edit" destination="Dry-SQ-6Pz" id="BX5-uq-MfM"/>
                         <outlet property="fsCalendar" destination="wNQ-6C-3IL" id="Ize-q5-G23"/>
                         <outlet property="mainText" destination="nkG-AQ-yWf" id="gij-ES-uo3"/>
-                        <outlet property="share" destination="Dry-SQ-6Pz" id="3Ma-is-GVx"/>
+                        <outlet property="share" destination="Dry-SQ-6Pz" id="VNa-vv-8Mg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -255,7 +277,7 @@
     </scenes>
     <resources>
         <namedColor name="MyColor">
-            <color red="0.27450980392156865" green="0.70196078431372544" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.27500000596046448" green="0.70200002193450928" blue="0.61599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

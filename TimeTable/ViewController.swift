@@ -10,7 +10,7 @@ import UIKit
 import FSCalendar
 import Firebase
 
-class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
+class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, UIGestureRecognizerDelegate {
 
     // MARK: Properties
     @IBOutlet weak var fsCalendar: FSCalendar!
@@ -20,12 +20,24 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     @IBOutlet weak var share: UIToolbar!
     @IBOutlet weak var mainText: UITextView!
     
+    @IBOutlet weak var constraintHeight: NSLayoutConstraint!
+    
+    
     var arrDate = [String]()
     var cvc: ComposeViewController?
     static var selectedDate: Date?
     
     let formatter:DateFormatter = DateFormatter()
     let ref = Database.database().reference()
+    
+    fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
+        [unowned self] in
+        let panGesture = UIPanGestureRecognizer(target: self.fsCalendar, action: #selector(self.fsCalendar.handleScopeGesture(_:)))
+        panGesture.delegate = self
+        panGesture.minimumNumberOfTouches = 1
+        panGesture.maximumNumberOfTouches = 2
+        return panGesture
+    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,7 +50,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
                 self.arrDate = arr
             }
         }
-        
+        self.view.layoutIfNeeded()
     }
     
     override func viewDidLoad() {
@@ -46,6 +58,10 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         fsCalendar.delegate = self
         fsCalendar.dataSource = self
         fsCalendar.locale = Locale(identifier: "ko_KR")
+        
+        self.view.addGestureRecognizer(self.scopeGesture)
+        self.fsCalendar.accessibilityIdentifier = "calendar"
+        self.mainText.panGestureRecognizer.require(toFail: self.scopeGesture)
         
         self.formatter.dateFormat = "yyyy-MM-dd"
         
@@ -87,22 +103,13 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         return true
     }
     
-    func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
-    }
-    
-    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        self.constraintHeight.constant = bounds.height
+        self.view.layoutIfNeeded()
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//        for i in self.arrDate {
-//            print(i)
-//        }
-        
-        if self.arrDate.contains(formatter.string(from: date)){
-            return 1
-        }else{
-            return 0
-        }
+        return 0
     }
     
     // MARK: Action Method
@@ -127,6 +134,17 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func share(_ sender: Any) {
+        guard let content  = mainText?.text else {
+            return
+        }
+        let vc = UIActivityViewController(activityItems: [content], applicationActivities: nil)
+        
+        if let pc = vc.popoverPresentationController {
+            pc.barButtonItem = sender as? UIBarButtonItem
+        }
+        present(vc, animated: true, completion: nil)
+    }
     
     // MARK: func Method
     func saveDate(arrDate: [String]){
