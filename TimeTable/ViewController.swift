@@ -22,9 +22,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     
     @IBOutlet weak var constraintHeight: NSLayoutConstraint!
     
-    
     var arrDate = [String]()
-    var cvc: ComposeViewController?
     static var selectedDate: Date?
     
     let formatter:DateFormatter = DateFormatter()
@@ -41,15 +39,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        ref.child("diary").observeSingleEvent(of: .value) { snapshot in
-            guard let arr = snapshot.value as? [String] else{
-                return
-            }
-            DispatchQueue.main.async {
-                self.arrDate = arr
-            }
-        }
         self.view.layoutIfNeeded()
     }
     
@@ -70,6 +59,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             disableButton()
             return
         }
+        
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = UIColor(named: "MyColor")
         navigationBarAppearace.barTintColor = UIColor(named: "MyColor")
@@ -105,6 +95,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         self.constraintHeight.constant = bounds.height
+        self.mainText.sizeToFit()
         self.view.layoutIfNeeded()
     }
     
@@ -147,10 +138,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     }
     
     // MARK: func Method
-    func saveDate(arrDate: [String]){
-        self.arrDate = arrDate
-    }
-    
     func activeButton(){
         delete.isHidden = false
         edit.isHidden = false

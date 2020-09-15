@@ -70,11 +70,8 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nkG-AQ-yWf">
                                 <rect key="frame" x="20" y="509" width="374" height="299"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="299" id="N9T-YM-cOA"/>
-                                </constraints>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -90,7 +87,7 @@
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="top" secondItem="grS-m4-15y" secondAttribute="bottom" id="d69-Vz-uEi"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="nkG-AQ-yWf" secondAttribute="leading" id="eF1-iy-3mL"/>
                             <constraint firstItem="Dry-SQ-6Pz" firstAttribute="top" secondItem="nkG-AQ-yWf" secondAttribute="bottom" constant="12" id="eQD-ws-Dc6"/>
-                            <constraint firstAttribute="bottom" secondItem="Dry-SQ-6Pz" secondAttribute="bottom" priority="500" constant="27" id="eXk-5v-Bqd"/>
+                            <constraint firstAttribute="bottom" secondItem="Dry-SQ-6Pz" secondAttribute="bottom" constant="27" id="eXk-5v-Bqd"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="trailing" secondItem="nkG-AQ-yWf" secondAttribute="trailing" id="kzc-OR-BvE"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="vJ0-xN-evM"/>
                         </constraints>
