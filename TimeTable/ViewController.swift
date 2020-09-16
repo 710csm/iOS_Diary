@@ -25,6 +25,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     var arrDate = [String]()
     static var selectedDate: Date?
     
+    let ad = UIApplication.shared.delegate as? AppDelegate
     let formatter:DateFormatter = DateFormatter()
     let ref = Database.database().reference()
     
@@ -39,6 +40,29 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if #available(iOS 13.0, *) {
+            let app = UIApplication.shared
+            let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+            
+            let statusbarView = UIView()
+            statusbarView.backgroundColor = UIColor(named: "StatusbarColor")
+            view.addSubview(statusbarView)
+          
+            statusbarView.translatesAutoresizingMaskIntoConstraints = false
+            statusbarView.heightAnchor
+                .constraint(equalToConstant: statusBarHeight).isActive = true
+            statusbarView.widthAnchor
+                .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+            statusbarView.topAnchor
+                .constraint(equalTo: view.topAnchor).isActive = true
+            statusbarView.centerXAnchor
+                .constraint(equalTo: view.centerXAnchor).isActive = true
+          
+        } else {
+            let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+            statusBar?.backgroundColor = UIColor(named: "StatusbarColor")
+        }
         self.view.layoutIfNeeded()
     }
     
@@ -59,15 +83,11 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             disableButton()
             return
         }
-        
-        let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.tintColor = UIColor(named: "MyColor")
-        navigationBarAppearace.barTintColor = UIColor(named: "MyColor")
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        return .lightContent
     }
     
     // MARK: FSCalendar
@@ -100,13 +120,24 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        return 0
+//        var result: Int = 0
+        ref.child("diary").child(formatter.string(from: date)).observe(.value, with: { (snapshot) in
+            guard let arr = snapshot.value as? [String] else{
+                return
+            }
+            if arr[0] == self.formatter.string(from: date){
+                self.ad?.result = 1
+            }else {
+                self.ad?.result = 0
+            }
+        })
+        
+        return ad!.result
     }
     
     // MARK: Action Method
     @IBAction func deleteData(_ sender: Any) {
         let diaryRef = ref.child("diary").child(formatter.string(from: ViewController.selectedDate!))
-        
         let alert = UIAlertController(title: "삭제 확인", message: "일기를 삭제하겠습니까?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "삭제", style: .destructive){
             [weak self] (action) in
@@ -149,12 +180,14 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         edit.isHidden = true
         share.isHidden = true
     }
-        
 }
 
 extension UIApplication {
     var statusBarView: UIView? {
-        return value(forKey: "statusBar") as? UIView
+        if responds(to: Selector(("statusBar"))) {
+            return value(forKey: "statusBar") as? UIView
+        }
+        return nil
     }
 }
 
