@@ -316,14 +316,29 @@
                     <view key="view" contentMode="scaleToFill" id="WTm-cj-BLa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bw5-9K-OTZ" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="404"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2iu-pf-E8s"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2iu-pf-E8s" firstAttribute="bottom" secondItem="Bw5-9K-OTZ" secondAttribute="bottom" constant="365" id="Ooh-L2-Id4"/>
+                            <constraint firstItem="Bw5-9K-OTZ" firstAttribute="trailing" secondItem="2iu-pf-E8s" secondAttribute="trailing" id="Tor-vd-rke"/>
+                            <constraint firstItem="Bw5-9K-OTZ" firstAttribute="leading" secondItem="2iu-pf-E8s" secondAttribute="leading" id="mzW-5t-jkd"/>
+                            <constraint firstItem="Bw5-9K-OTZ" firstAttribute="top" secondItem="2iu-pf-E8s" secondAttribute="top" id="xxW-Hs-anv"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="지도" image="map" catalog="system" id="nip-Nc-oSt"/>
+                    <connections>
+                        <outlet property="map" destination="Bw5-9K-OTZ" id="dOz-gv-LYa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xbs-3A-yIK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="878"/>
+            <point key="canvasLocation" x="957.97101449275374" y="897.99107142857133"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="K1o-ff-Cjf">

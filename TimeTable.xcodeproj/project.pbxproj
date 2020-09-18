@@ -118,6 +118,7 @@
 				02FC312A25060926003050A5 /* Frameworks */,
 				02FC312B25060926003050A5 /* Resources */,
 				A7B6DD875457DA0FFAFA402D /* [CP] Embed Pods Frameworks */,
+				2AEDD535FB1C105BA4A9552D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,6 +177,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2AEDD535FB1C105BA4A9552D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TimeTable/Pods-TimeTable-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TimeTable/Pods-TimeTable-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TimeTable/Pods-TimeTable-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		60DCF9E70650131E88457108 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

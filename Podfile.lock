@@ -44,6 +44,13 @@ PODS:
     - nanopb (~> 1.30906.0)
   - GoogleDataTransport (7.3.0):
     - nanopb (~> 1.30906.0)
+  - GoogleMaps (3.10.0):
+    - GoogleMaps/Maps (= 3.10.0)
+  - GoogleMaps/Base (3.10.0)
+  - GoogleMaps/Maps (3.10.0):
+    - GoogleMaps/Base
+  - GooglePlaces (3.10.0):
+    - GoogleMaps/Base (= 3.10.0)
   - GoogleUtilities/AppDelegateSwizzler (6.7.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -77,6 +84,8 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - FSCalendar
+  - GoogleMaps
+  - GooglePlaces
   - PopOverMenu
 
 SPEC REPOS:
@@ -90,6 +99,8 @@ SPEC REPOS:
     - FSCalendar
     - GoogleAppMeasurement
     - GoogleDataTransport
+    - GoogleMaps
+    - GooglePlaces
     - GoogleUtilities
     - leveldb-library
     - nanopb
@@ -106,12 +117,14 @@ SPEC CHECKSUMS:
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   GoogleAppMeasurement: e3618c6e9f5166a6b320b03b759da3b04ec2a101
   GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
+  GoogleMaps: 8c080862ff2748ece9929471b30feb56a6c5079d
+  GooglePlaces: 9a6f5f3a0c88da2aa1bf7426a65d3e004f5e69a1
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PopOverMenu: 958033577cdcfae7dc506c8dfeed621d1491924e
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
 
-PODFILE CHECKSUM: 541dec163302983f7ab7ae2fdf9af396eed6181d
+PODFILE CHECKSUM: f664f387e273f6b381e0745ea41f8e8d07e0ee26
 
 COCOAPODS: 1.9.3
