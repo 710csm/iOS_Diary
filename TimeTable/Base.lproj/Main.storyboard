@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pht-4t-4Ez">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--메인-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +21,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grS-m4-15y">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <color key="backgroundColor" name="MyColor"/>
-                                <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
                                 <color key="barTintColor" name="NavigationColor"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -37,7 +39,7 @@
                             </navigationBar>
                             <view contentMode="scaleToFill" restorationIdentifier="calender" translatesAutoresizingMaskIntoConstraints="NO" id="wNQ-6C-3IL" customClass="FSCalendar">
                                 <rect key="frame" x="20" y="88" width="374" height="400"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="QVh-tM-6An"/>
                                 </constraints>
@@ -46,10 +48,10 @@
                                 </connections>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dry-SQ-6Pz">
-                                <rect key="frame" x="0.0" y="837" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="764" width="414" height="49"/>
                                 <items>
                                     <barButtonItem systemItem="trash" id="2pp-aa-TPm">
-                                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
                                         <connections>
                                             <action selector="deleteData:" destination="BYZ-38-t0r" id="WU0-OV-vaQ"/>
                                         </connections>
@@ -69,15 +71,17 @@
                                 </items>
                             </toolbar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nkG-AQ-yWf">
-                                <rect key="frame" x="20" y="509" width="374" height="316"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <rect key="frame" x="20" y="509" width="374" height="255"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2id-CG-Pkz"/>
                             <constraint firstItem="Dry-SQ-6Pz" firstAttribute="centerX" secondItem="nkG-AQ-yWf" secondAttribute="centerX" id="6dI-aB-n8b"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="92e-MI-tcB"/>
                             <constraint firstItem="nkG-AQ-yWf" firstAttribute="top" secondItem="wNQ-6C-3IL" secondAttribute="bottom" constant="21" id="FCd-W6-zvJ"/>
@@ -86,16 +90,17 @@
                             <constraint firstItem="grS-m4-15y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Vrn-aX-XSz"/>
                             <constraint firstItem="grS-m4-15y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="WKZ-MW-for"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="top" secondItem="grS-m4-15y" secondAttribute="bottom" id="d69-Vz-uEi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wNQ-6C-3IL" secondAttribute="trailing" constant="20" id="dVE-Py-k2Q"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="nkG-AQ-yWf" secondAttribute="leading" id="eF1-iy-3mL"/>
-                            <constraint firstItem="Dry-SQ-6Pz" firstAttribute="top" secondItem="nkG-AQ-yWf" secondAttribute="bottom" constant="12" id="eQD-ws-Dc6"/>
-                            <constraint firstAttribute="bottom" secondItem="Dry-SQ-6Pz" secondAttribute="bottom" constant="10" id="eXk-5v-Bqd">
+                            <constraint firstAttribute="bottom" secondItem="Dry-SQ-6Pz" secondAttribute="bottom" constant="83" id="eXk-5v-Bqd">
                                 <variation key="heightClass=compact-widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="trailing" secondItem="nkG-AQ-yWf" secondAttribute="trailing" id="kzc-OR-BvE"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="vJ0-xN-evM"/>
+                            <constraint firstItem="Dry-SQ-6Pz" firstAttribute="top" secondItem="nkG-AQ-yWf" secondAttribute="bottom" id="y7L-TL-HLQ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="메인" image="house.fill" catalog="system" id="Sr0-h8-yLx"/>
                     <connections>
                         <outlet property="add" destination="I5W-Un-Ndt" id="xKy-IQ-hBu"/>
                         <outlet property="constraintHeight" destination="QVh-tM-6An" id="MSL-FA-voI"/>
@@ -108,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
+            <point key="canvasLocation" x="1047.8260869565217" y="129.91071428571428"/>
         </scene>
         <!--Preview View Controller-->
         <scene sceneID="leA-UM-qqW">
@@ -119,14 +124,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Jy-5d-kJ1">
-                                <rect key="frame" x="79" y="112" width="315" height="34"/>
+                                <rect key="frame" x="78" y="112" width="316" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-Un-k6B">
                                 <rect key="frame" x="20" y="154" width="374" height="654"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -140,13 +145,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCx-WJ-THc">
-                                <rect key="frame" x="20" y="114" width="51" height="30"/>
+                                <rect key="frame" x="20" y="114" width="50" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="iwH-0F-Ua4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1Jy-5d-kJ1" firstAttribute="trailing" secondItem="94M-TL-ltf" secondAttribute="trailingMargin" id="1Yg-ui-PWp"/>
                             <constraint firstItem="hCx-WJ-THc" firstAttribute="leading" secondItem="REQ-Un-k6B" secondAttribute="leading" id="G2j-es-Van"/>
@@ -161,7 +167,6 @@
                             <constraint firstItem="REQ-Un-k6B" firstAttribute="bottom" secondItem="iwH-0F-Ua4" secondAttribute="bottom" id="y4C-6y-Lh5"/>
                             <constraint firstItem="1Jy-5d-kJ1" firstAttribute="leading" secondItem="hCx-WJ-THc" secondAttribute="trailing" constant="8" id="yc3-fE-uNx"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="iwH-0F-Ua4"/>
                     </view>
                     <navigationItem key="navigationItem" id="pSG-PY-ufn">
                         <barButtonItem key="leftBarButtonItem" title="취소" id="JBH-9b-pEF">
@@ -183,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yZj-c3-VaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1871" y="515"/>
+            <point key="canvasLocation" x="2780" y="502"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="35T-2C-Iki">
@@ -195,19 +200,19 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RR1-b7-5R2">
                                 <rect key="frame" x="20" y="154" width="374" height="654"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHx-Al-9oe">
-                                <rect key="frame" x="20" y="114" width="51" height="30"/>
+                                <rect key="frame" x="20" y="114" width="50" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BEE-aO-DPX">
-                                <rect key="frame" x="79" y="112" width="315" height="34"/>
+                                <rect key="frame" x="78" y="112" width="316" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -221,7 +226,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6GP-CN-v15"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RR1-b7-5R2" firstAttribute="bottom" secondItem="6GP-CN-v15" secondAttribute="bottom" id="5q1-pQ-zwG"/>
                             <constraint firstItem="RR1-b7-5R2" firstAttribute="top" secondItem="BEE-aO-DPX" secondAttribute="bottom" constant="8" id="5ru-4e-HEU"/>
@@ -236,7 +242,6 @@
                             <constraint firstItem="BEE-aO-DPX" firstAttribute="top" secondItem="CE0-SD-pkc" secondAttribute="bottom" constant="8" id="kFf-8C-OQt"/>
                             <constraint firstItem="BEE-aO-DPX" firstAttribute="leading" secondItem="DHx-Al-9oe" secondAttribute="trailing" constant="8" id="ruy-dM-6nC"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6GP-CN-v15"/>
                     </view>
                     <navigationItem key="navigationItem" id="qbE-IR-2Mi">
                         <barButtonItem key="leftBarButtonItem" title="취소" id="SaD-Pf-rpT">
@@ -250,7 +255,11 @@
                                     <action selector="save:" destination="Kfq-Sz-cqW" id="GjJ-Hl-blz"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="compose" id="6Yh-P3-LqN"/>
+                            <barButtonItem systemItem="compose" id="6Yh-P3-LqN">
+                                <connections>
+                                    <action selector="addPic:" destination="Kfq-Sz-cqW" id="SF2-Il-S8Z"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -261,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tpD-ll-XdZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1871.0144927536232" y="-210.26785714285714"/>
+            <point key="canvasLocation" x="2780" y="-216"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UiL-Sj-If4">
@@ -280,7 +289,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZ8-8z-fcf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="-209"/>
+            <point key="canvasLocation" x="1922" y="-216"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IET-R3-JC1">
@@ -298,15 +307,61 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90e-Ma-d5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011.5942028985507" y="514.95535714285711"/>
+            <point key="canvasLocation" x="1922" y="502"/>
+        </scene>
+        <!--지도-->
+        <scene sceneID="BT8-vO-GjS">
+            <objects>
+                <viewController id="3KA-Xe-VPT" customClass="MapViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WTm-cj-BLa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="2iu-pf-E8s"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="지도" image="map" catalog="system" id="nip-Nc-oSt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xbs-3A-yIK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="878"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="K1o-ff-Cjf">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Pht-4t-4Ez" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Sht-KN-zD4">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="9Kj-tW-fP8"/>
+                        <segue destination="3KA-Xe-VPT" kind="relationship" relationship="viewControllers" id="zzC-gi-nkO"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a3v-Eg-02O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-39" y="480"/>
         </scene>
     </scenes>
     <resources>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="map" catalog="system" width="128" height="110"/>
         <namedColor name="MyColor">
             <color red="0.27500000596046448" green="0.70200002193450928" blue="0.61599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="NavigationColor">
             <color red="0.31400001049041748" green="0.66699999570846558" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

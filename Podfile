@@ -9,6 +9,7 @@ target 'TimeTable' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'PopOverMenu'
   # Pods for TimeTable
 
 end

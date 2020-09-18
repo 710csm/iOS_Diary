@@ -69,6 +69,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - PopOverMenu (2.6.0)
   - PromisesObjC (1.2.10)
 
 DEPENDENCIES:
@@ -76,6 +77,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - FSCalendar
+  - PopOverMenu
 
 SPEC REPOS:
   trunk:
@@ -91,6 +93,7 @@ SPEC REPOS:
     - GoogleUtilities
     - leveldb-library
     - nanopb
+    - PopOverMenu
     - PromisesObjC
 
 SPEC CHECKSUMS:
@@ -106,8 +109,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  PopOverMenu: 958033577cdcfae7dc506c8dfeed621d1491924e
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
 
-PODFILE CHECKSUM: ce33f959ad30bae7bf8c30462bdaaa36f90a0c95
+PODFILE CHECKSUM: 541dec163302983f7ab7ae2fdf9af396eed6181d
 
 COCOAPODS: 1.9.3

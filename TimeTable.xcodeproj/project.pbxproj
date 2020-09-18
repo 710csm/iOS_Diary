@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0262F7AA2508BFBC00AA603B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0262F7A92508BFBC00AA603B /* GoogleService-Info.plist */; };
+		027FF6502514F0490095F05C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027FF64F2514F0490095F05C /* MapViewController.swift */; };
 		02CFEB462507A3E900BB8E48 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CFEB452507A3E900BB8E48 /* ComposeViewController.swift */; };
 		02CFEB482507C96400BB8E48 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CFEB472507C96400BB8E48 /* PreviewViewController.swift */; };
 		02FC313125060926003050A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FC313025060926003050A5 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		0262F7A92508BFBC00AA603B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		027FF64F2514F0490095F05C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		02CFEB452507A3E900BB8E48 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		02CFEB472507C96400BB8E48 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		02FC312D25060926003050A5 /* TimeTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +78,7 @@
 				02FC313425060926003050A5 /* ViewController.swift */,
 				02CFEB472507C96400BB8E48 /* PreviewViewController.swift */,
 				02FC313625060926003050A5 /* Main.storyboard */,
+				027FF64F2514F0490095F05C /* MapViewController.swift */,
 				02CFEB452507A3E900BB8E48 /* ComposeViewController.swift */,
 				02FC313C25060927003050A5 /* Assets.xcassets */,
 				02FC313E25060927003050A5 /* LaunchScreen.storyboard */,
@@ -225,6 +228,7 @@
 				02FC313125060926003050A5 /* AppDelegate.swift in Sources */,
 				02FC313325060926003050A5 /* SceneDelegate.swift in Sources */,
 				02CFEB482507C96400BB8E48 /* PreviewViewController.swift in Sources */,
+				027FF6502514F0490095F05C /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

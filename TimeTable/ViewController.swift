@@ -25,7 +25,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     var arrDate = [String]()
     static var selectedDate: Date?
     
-    let ad = UIApplication.shared.delegate as? AppDelegate
     let formatter:DateFormatter = DateFormatter()
     let ref = Database.database().reference()
     
@@ -119,21 +118,22 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         self.view.layoutIfNeeded()
     }
     
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//        var result: Int = 0
-        ref.child("diary").child(formatter.string(from: date)).observe(.value, with: { (snapshot) in
-            guard let arr = snapshot.value as? [String] else{
-                return
-            }
-            if arr[0] == self.formatter.string(from: date){
-                self.ad?.result = 1
-            }else {
-                self.ad?.result = 0
-            }
-        })
-        
-        return ad!.result
-    }
+//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+//        
+//        ref.child("diary").child(formatter.string(from: date)).observeSingleEvent(of: .value) { (DataSnapshot) in
+//            guard let arr = DataSnapshot.value as? [String] else{
+//                return
+//            }
+//            if arr[0] == self.formatter.string(from: date){
+//                self.arrDate.insert(arr[0], at: 0)
+//            }
+//        }
+//        if(arrDate[0] == self.formatter.string(from: date)){
+//            return 1
+//        }else {
+//            return 0
+//        }
+//    }
     
     // MARK: Action Method
     @IBAction func deleteData(_ sender: Any) {
