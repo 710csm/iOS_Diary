@@ -16,10 +16,14 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextField: UITextView!
-    
+
     let formatter:DateFormatter = DateFormatter()
     var arrValue = [String]()
     var arrDate = [String]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,8 +74,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
     }
     
     public func openMenu(sender:UIBarButtonItem) {
-            let titles = ["사진", "그림"]
-            let descriptions = ["갤러리에서 사진 추가", "손그림 추가"]
+            let titles = ["사진", "그림", "위치"]
+            let descriptions = ["갤러리에서 사진 추가", "손그림 추가", "위치 정보 추가"]
             
             let popOverViewController = PopOverViewController.instantiate()
             popOverViewController.set(titles: titles)
@@ -83,7 +87,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
             // popOverViewController.set(separatorStyle: UITableViewCellSeparatorStyle.singleLine)
 
             popOverViewController.popoverPresentationController?.barButtonItem = sender
-            popOverViewController.preferredContentSize = CGSize(width: 250, height:100)
+            popOverViewController.preferredContentSize = CGSize(width: 250, height:150)
             popOverViewController.presentationController?.delegate = self
             popOverViewController.completionHandler = { selectRow in
                 switch (selectRow) {
@@ -91,6 +95,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
                     break
                 case 1:
                     break
+                case 2:
+                    guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "addLocation") else { return }
+                    let navController = UINavigationController(rootViewController: myVC)
+                    self.navigationController?.present(navController, animated: true, completion: nil)
+                    break;
                 default:
                     break
                 }

@@ -31,7 +31,7 @@
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="I5W-Un-Ndt">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
-                                                <segue destination="cLo-fo-YLM" kind="presentation" id="239-nN-RCh"/>
+                                                <segue destination="cLo-fo-YLM" kind="presentation" modalPresentationStyle="fullScreen" id="Aga-qF-riG"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -59,7 +59,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="IC0-EF-HNN"/>
                                     <barButtonItem systemItem="compose" id="y7v-s8-dQy">
                                         <connections>
-                                            <segue destination="c2y-TA-ncn" kind="presentation" id="pS7-NI-2eY"/>
+                                            <segue destination="c2y-TA-ncn" kind="presentation" modalPresentationStyle="fullScreen" id="pS7-NI-2eY"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bq3-sa-D0d"/>
@@ -102,7 +102,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="메인" image="house.fill" catalog="system" id="Sr0-h8-yLx"/>
                     <connections>
-                        <outlet property="add" destination="I5W-Un-Ndt" id="xKy-IQ-hBu"/>
+                        <outlet property="add" destination="I5W-Un-Ndt" id="Dzm-Am-kib"/>
                         <outlet property="constraintHeight" destination="QVh-tM-6An" id="MSL-FA-voI"/>
                         <outlet property="delete" destination="Dry-SQ-6Pz" id="IHf-VN-stS"/>
                         <outlet property="edit" destination="Dry-SQ-6Pz" id="BX5-uq-MfM"/>
@@ -113,30 +113,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="129.91071428571428"/>
+            <point key="canvasLocation" x="958" y="133"/>
         </scene>
         <!--Preview View Controller-->
         <scene sceneID="leA-UM-qqW">
             <objects>
                 <viewController id="mkX-1s-S2r" customClass="PreviewViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="94M-TL-ltf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Jy-5d-kJ1">
-                                <rect key="frame" x="78" y="112" width="316" height="34"/>
+                                <rect key="frame" x="78" y="144" width="316" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="REQ-Un-k6B">
-                                <rect key="frame" x="20" y="154" width="374" height="654"/>
+                                <rect key="frame" x="20" y="186" width="374" height="676"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciJ-ia-O3D">
-                                <rect key="frame" x="20" y="72" width="199" height="32"/>
+                                <rect key="frame" x="20" y="104" width="199" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="Ja9-zI-EHn"/>
                                 </constraints>
@@ -145,7 +145,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCx-WJ-THc">
-                                <rect key="frame" x="20" y="114" width="50" height="30"/>
+                                <rect key="frame" x="20" y="146" width="50" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -195,29 +195,29 @@
             <objects>
                 <viewController storyboardIdentifier="ComposeStoryboard" id="Kfq-Sz-cqW" customClass="ComposeViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vKI-cA-Gig">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RR1-b7-5R2">
-                                <rect key="frame" x="20" y="154" width="374" height="654"/>
+                                <rect key="frame" x="20" y="186" width="374" height="676"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHx-Al-9oe">
-                                <rect key="frame" x="20" y="114" width="50" height="30"/>
+                                <rect key="frame" x="20" y="146" width="50" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BEE-aO-DPX">
-                                <rect key="frame" x="78" y="112" width="316" height="34"/>
+                                <rect key="frame" x="78" y="144" width="316" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CE0-SD-pkc">
-                                <rect key="frame" x="20" y="72" width="199" height="32"/>
+                                <rect key="frame" x="20" y="104" width="199" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="Qba-xX-iCF"/>
                                 </constraints>
@@ -272,6 +272,48 @@
             </objects>
             <point key="canvasLocation" x="2780" y="-216"/>
         </scene>
+        <!--위치 추가-->
+        <scene sceneID="5ds-fQ-eEo">
+            <objects>
+                <viewController storyboardIdentifier="addLocation" id="4sz-vC-6hV" customClass="AddMapViewController" customModule="TimeTable" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0th-T9-YlK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EQp-AU-cN4" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="542"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8Qh-pc-1WN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EQp-AU-cN4" firstAttribute="top" secondItem="8Qh-pc-1WN" secondAttribute="top" id="8ow-1i-png"/>
+                            <constraint firstItem="8Qh-pc-1WN" firstAttribute="bottom" secondItem="EQp-AU-cN4" secondAttribute="bottom" constant="232" id="SyZ-La-fm1"/>
+                            <constraint firstItem="EQp-AU-cN4" firstAttribute="trailing" secondItem="8Qh-pc-1WN" secondAttribute="trailing" id="l0I-hJ-0zC"/>
+                            <constraint firstItem="EQp-AU-cN4" firstAttribute="leading" secondItem="8Qh-pc-1WN" secondAttribute="leading" id="nfX-ZY-wzs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="위치 추가" id="QdY-ya-bb9">
+                        <barButtonItem key="leftBarButtonItem" title="취소" id="Uyd-3u-R2V">
+                            <connections>
+                                <action selector="cancel:" destination="4sz-vC-6hV" id="3XZ-eF-kh5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="저장" id="0Px-Eh-GGY">
+                            <connections>
+                                <action selector="save:" destination="4sz-vC-6hV" id="rYF-c3-v05"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="map" destination="EQp-AU-cN4" id="6OQ-6p-q0X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Gq-Rj-nUl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4552.1739130434789" y="-216.29464285714286"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="UiL-Sj-If4">
             <objects>
@@ -279,7 +321,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hDr-XR-A18"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mtM-zp-ifo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -296,8 +338,9 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c2y-TA-ncn" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="der-4T-pd2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fjL-Co-pGK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -358,6 +401,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3v-Eg-02O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-39" y="480"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hs6-XR-jZL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qpo-we-31L" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LTj-WO-jC2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4sz-vC-6hV" kind="relationship" relationship="rootViewController" id="P33-Vk-TZp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H9F-e3-u6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3642.0289855072465" y="-216.29464285714286"/>
         </scene>
     </scenes>
     <resources>
