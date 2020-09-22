@@ -12,14 +12,25 @@ import PopOverMenu
 
 class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePresentationControllerDelegate {
     
+
+    
     // MARK: Properties
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextField: UITextView!
-
+    @IBOutlet weak var locationTextField: UILabel!
+    
     let formatter:DateFormatter = DateFormatter()
+    
+    static var location: String?
     var arrValue = [String]()
-    var arrDate = [String]()
+    
+    var token:NSObjectProtocol?
+    deinit {
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -30,8 +41,13 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         
         self.formatter.dateFormat = "yyyy-MM-dd"
         dateLabel.text = formatter.string(from: ViewController.selectedDate!)
-        
         self.titleTextField.delegate = self
+        
+        token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "getLocation"), object: nil, queue: OperationQueue.main) {
+            [weak self] (noti) in
+            self?.locationTextField.text = ComposeViewController.location
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,15 +62,21 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func save(_ sender: Any) {
-        arrValue.append(dateLabel.text!)
-        arrValue.append(titleTextField.text!)
-        arrValue.append(contentTextField.text)
-        
-        let ref = Database.database().reference()
-        ref.child("diary").child(dateLabel.text!).setValue(arrValue)
-        
-        doneAlert()
+        if titleTextField.text == "", contentTextField.text == "" {
+            cancelAlert()
+        }else{
+            arrValue.append(dateLabel.text!)
+            arrValue.append(titleTextField.text!)
+            arrValue.append(contentTextField.text)
+            arrValue.append(locationTextField.text)
+            
+            let ref = Database.database().reference()
+            ref.child("diary").child(dateLabel.text!).setValue(arrValue)
+            
+            doneAlert()
+        }
     }
     @IBAction func addPic(_ sender: Any) {
         openMenu(sender: sender as! UIBarButtonItem)
@@ -62,12 +84,25 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
     
     
     // MARK: Func Method
+    
+    @objc func setLocation(){
+        locationTextField.text = ""
+    }
+    
     func doneAlert(){
         let alert = UIAlertController(title: "저장", message: "저장되었습니다.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default){
             [weak self] (action) in
             self?.dismiss(animated: true, completion: nil)
         }
+        
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func cancelAlert(){
+        let alert = UIAlertController(title: "경고", message: "입력된 내용이 없습니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
@@ -89,6 +124,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
             popOverViewController.popoverPresentationController?.barButtonItem = sender
             popOverViewController.preferredContentSize = CGSize(width: 250, height:150)
             popOverViewController.presentationController?.delegate = self
+        
             popOverViewController.completionHandler = { selectRow in
                 switch (selectRow) {
                 case 0:
@@ -96,7 +132,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
                 case 1:
                     break
                 case 2:
-                    guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "addLocation") else { return }
+                    guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "AddMapStoryboard") else { return }
                     let navController = UINavigationController(rootViewController: myVC)
                     self.navigationController?.present(navController, animated: true, completion: nil)
                     break;
@@ -116,6 +152,5 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
             return UIModalPresentationStyle.none
         }
-    
 
 }

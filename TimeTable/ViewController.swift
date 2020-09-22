@@ -62,7 +62,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
             statusBar?.backgroundColor = UIColor(named: "StatusbarColor")
         }
-        self.view.layoutIfNeeded()
     }
     
     override func viewDidLoad() {
