@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import PopOverMenu
+import Floaty
 
 class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePresentationControllerDelegate {
     
@@ -20,6 +20,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
     @IBOutlet weak var contentTextField: UITextView!
     @IBOutlet weak var locationTextField: UILabel!
     
+    let floaty = Floaty()
     let formatter:DateFormatter = DateFormatter()
     
     static var location: String?
@@ -48,6 +49,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
             self?.locationTextField.text = ComposeViewController.location
         }
         
+        floaty.addItem("위치", icon: UIImage(named: "location")!)
+        floaty.addItem("그림", icon: UIImage(named: "drawing")!)
+        floaty.addItem("사진", icon: UIImage(named: "picture")!)
+        self.view.addSubview(floaty)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,7 +61,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            self.titleTextField.resignFirstResponder()
+        self.titleTextField.resignFirstResponder()
     }
     
     // MARK: Action Button
@@ -70,7 +76,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
             arrValue.append(dateLabel.text!)
             arrValue.append(titleTextField.text!)
             arrValue.append(contentTextField.text)
-            arrValue.append(locationTextField.text)
+            arrValue.append(locationTextField.text!)
             
             let ref = Database.database().reference()
             ref.child("diary").child(dateLabel.text!).setValue(arrValue)
@@ -78,13 +84,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
             doneAlert()
         }
     }
-    @IBAction func addPic(_ sender: Any) {
-        openMenu(sender: sender as! UIBarButtonItem)
-    }
-    
-    
+
     // MARK: Func Method
-    
     @objc func setLocation(){
         locationTextField.text = ""
     }
@@ -108,41 +109,41 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         present(alert, animated: true, completion: nil)
     }
     
-    public func openMenu(sender:UIBarButtonItem) {
-            let titles = ["사진", "그림", "위치"]
-            let descriptions = ["갤러리에서 사진 추가", "손그림 추가", "위치 정보 추가"]
-            
-            let popOverViewController = PopOverViewController.instantiate()
-            popOverViewController.set(titles: titles)
-            popOverViewController.set(descriptions: descriptions)
-
-            // option parameteres
-            // popOverViewController.set(selectRow: 1)
-            // popOverViewController.set(showsVerticalScrollIndicator: true)
-            // popOverViewController.set(separatorStyle: UITableViewCellSeparatorStyle.singleLine)
-
-            popOverViewController.popoverPresentationController?.barButtonItem = sender
-            popOverViewController.preferredContentSize = CGSize(width: 250, height:150)
-            popOverViewController.presentationController?.delegate = self
-        
-            popOverViewController.completionHandler = { selectRow in
-                switch (selectRow) {
-                case 0:
-                    break
-                case 1:
-                    break
-                case 2:
-                    guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "AddMapStoryboard") else { return }
-                    let navController = UINavigationController(rootViewController: myVC)
-                    self.navigationController?.present(navController, animated: true, completion: nil)
-                    break;
-                default:
-                    break
-                }
-                
-            };
-            present(popOverViewController, animated: true, completion: nil)
-        }
+//    public func openMenu(sender:UIBarButtonItem) {
+//            let titles = ["사진", "그림", "위치"]
+//            let descriptions = ["갤러리에서 사진 추가", "손그림 추가", "위치 정보 추가"]
+//
+//            let popOverViewController = PopOverViewController.instantiate()
+//            popOverViewController.set(titles: titles)
+//            popOverViewController.set(descriptions: descriptions)
+//
+//            // option parameteres
+//            // popOverViewController.set(selectRow: 1)
+//            // popOverViewController.set(showsVerticalScrollIndicator: true)
+//            // popOverViewController.set(separatorStyle: UITableViewCellSeparatorStyle.singleLine)
+//
+//            popOverViewController.popoverPresentationController?.barButtonItem = sender
+//            popOverViewController.preferredContentSize = CGSize(width: 250, height:150)
+//            popOverViewController.presentationController?.delegate = self
+//
+//            popOverViewController.completionHandler = { selectRow in
+//                switch (selectRow) {
+//                case 0:
+//                    break
+//                case 1:
+//                    break
+//                case 2:
+//                    guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "AddMapStoryboard") else { return }
+//                    let navController = UINavigationController(rootViewController: myVC)
+//                    self.navigationController?.present(navController, animated: true, completion: nil)
+//                    break;
+//                default:
+//                    break
+//                }
+//
+//            };
+//            present(popOverViewController, animated: true, completion: nil)
+//        }
         
         func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
             return UIModalPresentationStyle.none

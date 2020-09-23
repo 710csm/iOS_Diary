@@ -9,7 +9,7 @@ target 'TimeTable' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
-  pod 'PopOverMenu'
+  pod 'Floaty'
   pod 'GoogleMaps'
   pod 'GooglePlaces'	
   # Pods for TimeTable
