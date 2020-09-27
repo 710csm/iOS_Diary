@@ -24,13 +24,11 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
     
     let someImageView: UIImageView = {
         let theImageView = UIImageView()
-//        theImageView.image = UIImage(named: "yourImage.png"
         theImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
         theImageView.translatesAutoresizingMaskIntoConstraints = false
         return theImageView
     }()
-    
-    
+   
     static var location: String?
     var arrValue = [String]()
     
@@ -49,7 +47,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         super.viewDidLoad()
         
         self.formatter.dateFormat = "yyyy-MM-dd"
-        
         self.titleTextField.delegate = self
         self.imagePicker.delegate = self
         
@@ -74,9 +71,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
         })
-        self.view.addSubview(floaty)
-        
-        view.addSubview(someImageView) //This add it the view controller without constraints
+        self.view.addSubview(floaty)        
+        self.view.addSubview(someImageView)
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -154,7 +150,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         someImageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         someImageView.bottomAnchor.constraint(equalTo: contentTextField.topAnchor, constant: -10).isActive = true
         
-        contentTextField.topAnchor.constraint(equalTo: someImageView.bottomAnchor, constant: 10).isActive = true
+        contentTextField.topAnchor.constraint(equalTo: someImageView.bottomAnchor, constant: -10).isActive = true
     }
 }
 

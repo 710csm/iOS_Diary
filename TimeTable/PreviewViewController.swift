@@ -8,21 +8,33 @@
 
 import UIKit
 import Firebase
+import Floaty
 
 class PreviewViewController: UIViewController {
 
     // MARK: Properties
-    let formatter:DateFormatter = DateFormatter()
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var titleText: UITextField!
     @IBOutlet weak var contentText: UITextView!
-
+    @IBOutlet weak var locationText: UILabel!
+    
+    let formatter:DateFormatter = DateFormatter()
+    let floaty = Floaty()
+    let imagePicker = UIImagePickerController()
+    let someImageView: UIImageView = {
+        let theImageView = UIImageView()
+        theImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
+        theImageView.translatesAutoresizingMaskIntoConstraints = false
+        return theImageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.formatter.dateFormat = "yyyy-MM-dd"
-        let ref = Database.database().reference()
+        self.imagePicker.delegate = self
         
+        let ref = Database.database().reference()
         ref.child("diary").child(formatter.string(from: ViewController.selectedDate!)).observeSingleEvent(of: .value) { snapshot in
             guard let arr = snapshot.value as? [String] else{
                 return
@@ -32,18 +44,23 @@ class PreviewViewController: UIViewController {
             self.contentText.text = arr[2]
         }
         
+        floaty.buttonColor = UIColor(named: "StatusbarColor")!
+        floaty.plusColor = UIColor.white
+        floaty.addItem("위치", icon: UIImage(named: "location")!, handler: { item in
+            guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "AddMapStoryboard") else {
+                return
+            }
+            let navController = UINavigationController(rootViewController: myVC)
+            self.navigationController?.present(navController, animated: true, completion: nil)
+        })
+        floaty.addItem("그림", icon: UIImage(named: "drawing")!)
+        floaty.addItem("사진", icon: UIImage(named: "picture")!, handler: { item in
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        })
+        self.view.addSubview(floaty)
+        self.view.addSubview(someImageView)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     // MARK: Action Method
     @IBAction func cancel(_ sender: Any) {
@@ -76,5 +93,27 @@ class PreviewViewController: UIViewController {
         
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func someImageViewConstraints() {
+        someImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        someImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
+        someImageView.topAnchor.constraint(equalTo: locationText.bottomAnchor, constant: 15).isActive = true
+        someImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        someImageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        someImageView.bottomAnchor.constraint(equalTo: contentText.topAnchor, constant: -10).isActive = true
+        
+        contentText.topAnchor.constraint(equalTo: someImageView.bottomAnchor, constant: -10).isActive = true
+    }
+}
+
+extension PreviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] {
+            someImageView.image = image as? UIImage
+            someImageViewConstraints() //This function is outside the viewDidLoad function that controls the constraints
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
