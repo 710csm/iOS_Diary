@@ -99,12 +99,11 @@ class PreviewViewController: UIViewController {
         someImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         someImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
-        someImageView.topAnchor.constraint(equalTo: locationText.bottomAnchor, constant: 15).isActive = true
+        someImageView.topAnchor.constraint(equalTo: locationText.bottomAnchor, constant: 10).isActive = true
         someImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         someImageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         someImageView.bottomAnchor.constraint(equalTo: contentText.topAnchor, constant: -10).isActive = true
-        
-        contentText.topAnchor.constraint(equalTo: someImageView.bottomAnchor, constant: -10).isActive = true
+       
     }
 }
 
