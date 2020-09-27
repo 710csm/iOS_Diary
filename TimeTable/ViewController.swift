@@ -22,11 +22,18 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     
     @IBOutlet weak var constraintHeight: NSLayoutConstraint!
     
-    var arrDate = [String]()
+    var date = String()
     static var selectedDate: Date?
     
     let formatter:DateFormatter = DateFormatter()
     let ref = Database.database().reference()
+    
+    var token:NSObjectProtocol?
+    deinit {
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
     
     fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
         [unowned self] in
@@ -61,6 +68,11 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         } else {
             let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
             statusBar?.backgroundColor = UIColor(named: "StatusbarColor")
+        }
+        
+        token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "saveData"), object: nil, queue: OperationQueue.main) {
+            [weak self] (noti) in
+            self?.fsCalendar.reloadData()
         }
     }
     
@@ -117,22 +129,22 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         self.view.layoutIfNeeded()
     }
     
-//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//        
-//        ref.child("diary").child(formatter.string(from: date)).observeSingleEvent(of: .value) { (DataSnapshot) in
-//            guard let arr = DataSnapshot.value as? [String] else{
-//                return
-//            }
-//            if arr[0] == self.formatter.string(from: date){
-//                self.arrDate.insert(arr[0], at: 0)
-//            }
-//        }
-//        if(arrDate[0] == self.formatter.string(from: date)){
-//            return 1
-//        }else {
-//            return 0
-//        }
-//    }
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        
+        ref.child("diary").child(formatter.string(from: date)).observeSingleEvent(of: .value) { (DataSnapshot) in
+            guard let arr = DataSnapshot.value as? [String] else{
+                return
+            }
+            if arr[0] == self.formatter.string(from: date){
+                self.date = arr[0]
+            }
+        }
+        if(self.date == self.formatter.string(from: date)){
+            return 1
+        }else {
+            return 0
+        }
+    }
     
     // MARK: Action Method
     @IBAction func deleteData(_ sender: Any) {

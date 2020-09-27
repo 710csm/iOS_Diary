@@ -54,19 +54,6 @@ class MapViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-//    override func loadView() {
-//        // Create a GMSCameraPosition that tells the map to display the
-//        let camera = GMSCameraPosition.camera(withLatitude: 37.88, longitude: 127.73, zoom: 15.0)
-//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-////      mapView.isMyLocationEnabled = true
-//        self.map = mapView
-//
-//        // Creates a marker in the center of the map.
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: 37.88, longitude: 127.73)
-//        marker.map = mapView
-//    }
 }
 
 // MARK: - CLLocationManagerDelegate

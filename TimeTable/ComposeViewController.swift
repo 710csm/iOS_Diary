@@ -12,8 +12,6 @@ import Floaty
 
 class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePresentationControllerDelegate {
     
-
-    
     // MARK: Properties
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
@@ -22,6 +20,16 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
     
     let floaty = Floaty()
     let formatter:DateFormatter = DateFormatter()
+    let imagePicker = UIImagePickerController()
+    
+    let someImageView: UIImageView = {
+        let theImageView = UIImageView()
+//        theImageView.image = UIImage(named: "yourImage.png"
+        theImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
+        theImageView.translatesAutoresizingMaskIntoConstraints = false
+        return theImageView
+    }()
+    
     
     static var location: String?
     var arrValue = [String]()
@@ -41,27 +49,46 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         super.viewDidLoad()
         
         self.formatter.dateFormat = "yyyy-MM-dd"
-        dateLabel.text = formatter.string(from: ViewController.selectedDate!)
+        
         self.titleTextField.delegate = self
+        self.imagePicker.delegate = self
+        
+        dateLabel.text = formatter.string(from: ViewController.selectedDate!)
         
         token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "getLocation"), object: nil, queue: OperationQueue.main) {
             [weak self] (noti) in
             self?.locationTextField.text = ComposeViewController.location
         }
         
-        floaty.addItem("위치", icon: UIImage(named: "location")!)
+        floaty.buttonColor = UIColor(named: "StatusbarColor")!
+        floaty.plusColor = UIColor.white
+        floaty.addItem("위치", icon: UIImage(named: "location")!, handler: { item in
+            guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "AddMapStoryboard") else {
+                return
+            }
+            let navController = UINavigationController(rootViewController: myVC)
+            self.navigationController?.present(navController, animated: true, completion: nil)
+        })
         floaty.addItem("그림", icon: UIImage(named: "drawing")!)
-        floaty.addItem("사진", icon: UIImage(named: "picture")!)
+        floaty.addItem("사진", icon: UIImage(named: "picture")!, handler: { item in
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        })
         self.view.addSubview(floaty)
         
+        view.addSubview(someImageView) //This add it the view controller without constraints
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool){
         self.titleTextField.becomeFirstResponder()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.titleTextField.resignFirstResponder()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     // MARK: Action Button
@@ -86,14 +113,15 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
     }
 
     // MARK: Func Method
-    @objc func setLocation(){
-        locationTextField.text = ""
-    }
-    
     func doneAlert(){
         let alert = UIAlertController(title: "저장", message: "저장되었습니다.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default){
             [weak self] (action) in
+            
+            NotificationCenter.default.post(
+                        name: NSNotification.Name(rawValue: "saveData"),
+                object: nil)
+            
             self?.dismiss(animated: true, completion: nil)
         }
         
@@ -108,50 +136,34 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
+        
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+        
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
     
-//    public func openMenu(sender:UIBarButtonItem) {
-//            let titles = ["사진", "그림", "위치"]
-//            let descriptions = ["갤러리에서 사진 추가", "손그림 추가", "위치 정보 추가"]
-//
-//            let popOverViewController = PopOverViewController.instantiate()
-//            popOverViewController.set(titles: titles)
-//            popOverViewController.set(descriptions: descriptions)
-//
-//            // option parameteres
-//            // popOverViewController.set(selectRow: 1)
-//            // popOverViewController.set(showsVerticalScrollIndicator: true)
-//            // popOverViewController.set(separatorStyle: UITableViewCellSeparatorStyle.singleLine)
-//
-//            popOverViewController.popoverPresentationController?.barButtonItem = sender
-//            popOverViewController.preferredContentSize = CGSize(width: 250, height:150)
-//            popOverViewController.presentationController?.delegate = self
-//
-//            popOverViewController.completionHandler = { selectRow in
-//                switch (selectRow) {
-//                case 0:
-//                    break
-//                case 1:
-//                    break
-//                case 2:
-//                    guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "AddMapStoryboard") else { return }
-//                    let navController = UINavigationController(rootViewController: myVC)
-//                    self.navigationController?.present(navController, animated: true, completion: nil)
-//                    break;
-//                default:
-//                    break
-//                }
-//
-//            };
-//            present(popOverViewController, animated: true, completion: nil)
-//        }
+    func someImageViewConstraints() {
+        someImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        someImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
-        func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-            return UIModalPresentationStyle.none
-        }
-
+        someImageView.topAnchor.constraint(equalTo: locationTextField.bottomAnchor, constant: 10).isActive = true
+        someImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        someImageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        someImageView.bottomAnchor.constraint(equalTo: contentTextField.topAnchor, constant: -10).isActive = true
         
-        func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-            return UIModalPresentationStyle.none
-        }
+        contentTextField.topAnchor.constraint(equalTo: someImageView.bottomAnchor, constant: 10).isActive = true
+    }
+}
 
+extension ComposeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] {
+            someImageView.image = image as? UIImage
+            someImageViewConstraints() //This function is outside the viewDidLoad function that controls the constraints
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
