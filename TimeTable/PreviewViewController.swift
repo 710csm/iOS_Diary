@@ -28,6 +28,13 @@ class PreviewViewController: UIViewController {
         return theImageView
     }()
     
+    var token:NSObjectProtocol?
+    deinit {
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +49,11 @@ class PreviewViewController: UIViewController {
             self.date.text = arr[0]
             self.titleText.text = arr[1]
             self.contentText.text = arr[2]
+        }
+        
+        token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "getLocation"), object: nil, queue: OperationQueue.main) {
+            [weak self] (noti) in
+            self?.locationText.text = AddMapViewController.location
         }
         
         floaty.buttonColor = UIColor(named: "StatusbarColor")!

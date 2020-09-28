@@ -18,6 +18,7 @@ class AddMapViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     
+    static var location = String()
     var position: CLLocationCoordinate2D?
     var selectedPlace: GMSPlace?
     var likelyPlaces: [GMSPlace] = []
@@ -45,10 +46,8 @@ class AddMapViewController: UIViewController {
     }
     
     @IBAction func save(_ sender: Any) {
-        ComposeViewController.location = address.text
-        NotificationCenter.default.post(
-                    name: NSNotification.Name(rawValue: "getLocation"),
-            object: nil)
+        AddMapViewController.location = address.text!
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getLocation"),object: nil)
         
         doneAlert()
     }

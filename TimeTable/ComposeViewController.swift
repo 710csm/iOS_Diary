@@ -28,10 +28,8 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         theImageView.translatesAutoresizingMaskIntoConstraints = false
         return theImageView
     }()
-   
-    static var location: String?
-    var arrValue = [String]()
-    
+
+    var arrValue = [String]()    
     var token:NSObjectProtocol?
     deinit {
         if let token = token {
@@ -54,7 +52,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         
         token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "getLocation"), object: nil, queue: OperationQueue.main) {
             [weak self] (noti) in
-            self?.locationTextField.text = ComposeViewController.location
+            self?.locationTextField.text = AddMapViewController.location
         }
         
         floaty.buttonColor = UIColor(named: "StatusbarColor")!
