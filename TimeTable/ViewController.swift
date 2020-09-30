@@ -20,6 +20,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     @IBOutlet weak var share: UIToolbar!
     @IBOutlet weak var mainText: UITextView!
     @IBOutlet weak var titleText: UILabel!
+    @IBOutlet weak var diaryView: UIView!
     
     @IBOutlet weak var constraintHeight: NSLayoutConstraint!
     
@@ -74,11 +75,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
             statusBar?.backgroundColor = UIColor(named: "StatusbarColor")
         }
-        
-//        token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "saveData"), object: nil, queue: OperationQueue.main) {
-//            [weak self] (noti) in
-//            self?.fsCalendar.reloadData()
-//        }
     }
     
     override func viewDidLoad() {
@@ -86,21 +82,24 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         fsCalendar.delegate = self
         fsCalendar.dataSource = self
         fsCalendar.locale = Locale(identifier: "ko_KR")
+        fsCalendar.accessibilityIdentifier = "calendar"
+        fsCalendar.appearance.selectionColor = UIColor(named: "StatusbarColor")
         
-        self.view.addGestureRecognizer(self.scopeGesture)
-        self.fsCalendar.accessibilityIdentifier = "calendar"
-        self.mainText.panGestureRecognizer.require(toFail: self.scopeGesture)
+        mainText.panGestureRecognizer.require(toFail: self.scopeGesture)
         
-        self.formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        view.addGestureRecognizer(self.scopeGesture)
+        diaryView.layer.cornerRadius = 7
         
         guard let _ = ViewController.selectedDate else{
             add.isEnabled = false
+            diaryView.layer.borderWidth = 0
             disableButton()
             return
         }
         self.setNeedsStatusBarAppearanceUpdate()
-        self.view.layoutIfNeeded()
-        self.view.setNeedsLayout()
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -115,6 +114,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         ref.child("diary").child(formatter.string(from: date)).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let arr = snapshot.value as? [String] else{
                 self.mainText.text = ""
+                self.titleText.text = ""
                 self.disableButton()
                 self.add.isEnabled = true
                 return
@@ -145,10 +145,8 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         }
         
         if self.date.contains(formatter.string(from: date)) {
-            print("성공")
             return 1
         } else {
-            print("ㅅㄱㅋㅋ")
             return 0
         }
     }
@@ -191,12 +189,14 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         delete.isHidden = false
         edit.isHidden = false
         share.isHidden = false
+        diaryView.layer.borderWidth = 1
     }
     
     func disableButton(){
         delete.isHidden = true
         edit.isHidden = true
         share.isHidden = true
+        diaryView.layer.borderWidth = 0
     }
     
     func setLoadDate() -> Int{

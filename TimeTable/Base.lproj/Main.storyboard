@@ -70,46 +70,58 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nkG-AQ-yWf">
-                                <rect key="frame" x="20" y="552" width="374" height="212"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPR-p4-ueL">
+                                <rect key="frame" x="20" y="496" width="374" height="258"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nkG-AQ-yWf">
+                                        <rect key="frame" x="0.0" y="56" width="374" height="202"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUI-BG-0bV">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="bFo-ZG-7KM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUI-BG-0bV">
-                                <rect key="frame" x="20" y="496" width="374" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="bFo-ZG-7KM"/>
+                                    <constraint firstItem="TUI-BG-0bV" firstAttribute="leading" secondItem="nkG-AQ-yWf" secondAttribute="leading" id="0cf-Hp-0e5"/>
+                                    <constraint firstAttribute="trailing" secondItem="TUI-BG-0bV" secondAttribute="trailing" id="4Fq-t3-IWe"/>
+                                    <constraint firstItem="nkG-AQ-yWf" firstAttribute="top" secondItem="TUI-BG-0bV" secondAttribute="bottom" constant="8" symbolic="YES" id="87w-lK-iO5"/>
+                                    <constraint firstItem="TUI-BG-0bV" firstAttribute="trailing" secondItem="nkG-AQ-yWf" secondAttribute="trailing" id="GkE-ic-a6n"/>
+                                    <constraint firstItem="TUI-BG-0bV" firstAttribute="top" secondItem="XPR-p4-ueL" secondAttribute="top" id="WLy-UA-Df0"/>
+                                    <constraint firstItem="TUI-BG-0bV" firstAttribute="leading" secondItem="XPR-p4-ueL" secondAttribute="leading" id="rze-pR-O9l"/>
+                                    <constraint firstAttribute="bottom" secondItem="nkG-AQ-yWf" secondAttribute="bottom" id="sqt-5q-U5W"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2id-CG-Pkz"/>
-                            <constraint firstItem="TUI-BG-0bV" firstAttribute="leading" secondItem="nkG-AQ-yWf" secondAttribute="leading" id="6cW-Rc-gSx"/>
-                            <constraint firstItem="Dry-SQ-6Pz" firstAttribute="centerX" secondItem="nkG-AQ-yWf" secondAttribute="centerX" id="6dI-aB-n8b"/>
+                            <constraint firstItem="XPR-p4-ueL" firstAttribute="centerX" secondItem="Dry-SQ-6Pz" secondAttribute="centerX" id="8qx-uS-f3g"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="92e-MI-tcB"/>
-                            <constraint firstItem="TUI-BG-0bV" firstAttribute="top" secondItem="wNQ-6C-3IL" secondAttribute="bottom" constant="8" symbolic="YES" id="FqV-Ed-F22"/>
+                            <constraint firstItem="XPR-p4-ueL" firstAttribute="trailing" secondItem="wNQ-6C-3IL" secondAttribute="trailing" id="9ab-P5-8AG"/>
                             <constraint firstItem="grS-m4-15y" firstAttribute="leading" secondItem="Dry-SQ-6Pz" secondAttribute="leading" id="G8Y-yr-LfR"/>
                             <constraint firstItem="grS-m4-15y" firstAttribute="trailing" secondItem="Dry-SQ-6Pz" secondAttribute="trailing" id="Imj-TN-TTM"/>
-                            <constraint firstItem="TUI-BG-0bV" firstAttribute="trailing" secondItem="nkG-AQ-yWf" secondAttribute="trailing" id="JpZ-op-W4e"/>
-                            <constraint firstItem="nkG-AQ-yWf" firstAttribute="top" secondItem="TUI-BG-0bV" secondAttribute="bottom" constant="8" symbolic="YES" id="U5V-Ra-C6C"/>
                             <constraint firstItem="grS-m4-15y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Vrn-aX-XSz"/>
                             <constraint firstItem="grS-m4-15y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="WKZ-MW-for"/>
+                            <constraint firstItem="XPR-p4-ueL" firstAttribute="top" secondItem="wNQ-6C-3IL" secondAttribute="bottom" constant="8" symbolic="YES" id="YXB-3e-fzy"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="top" secondItem="grS-m4-15y" secondAttribute="bottom" id="d69-Vz-uEi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wNQ-6C-3IL" secondAttribute="trailing" constant="20" id="dVE-Py-k2Q"/>
-                            <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="nkG-AQ-yWf" secondAttribute="leading" id="eF1-iy-3mL"/>
                             <constraint firstAttribute="bottom" secondItem="Dry-SQ-6Pz" secondAttribute="bottom" constant="83" id="eXk-5v-Bqd">
                                 <variation key="heightClass=compact-widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="wNQ-6C-3IL" firstAttribute="trailing" secondItem="nkG-AQ-yWf" secondAttribute="trailing" id="kzc-OR-BvE"/>
+                            <constraint firstItem="XPR-p4-ueL" firstAttribute="leading" secondItem="wNQ-6C-3IL" secondAttribute="leading" id="fuu-cH-6IN"/>
+                            <constraint firstItem="Dry-SQ-6Pz" firstAttribute="top" secondItem="XPR-p4-ueL" secondAttribute="bottom" constant="10" id="thW-aB-vCT"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="vJ0-xN-evM"/>
-                            <constraint firstItem="Dry-SQ-6Pz" firstAttribute="top" secondItem="nkG-AQ-yWf" secondAttribute="bottom" id="y7L-TL-HLQ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="메인" image="house.fill" catalog="system" id="Sr0-h8-yLx"/>
@@ -117,6 +129,7 @@
                         <outlet property="add" destination="I5W-Un-Ndt" id="Dzm-Am-kib"/>
                         <outlet property="constraintHeight" destination="QVh-tM-6An" id="MSL-FA-voI"/>
                         <outlet property="delete" destination="Dry-SQ-6Pz" id="IHf-VN-stS"/>
+                        <outlet property="diaryView" destination="XPR-p4-ueL" id="3Se-8F-ZUj"/>
                         <outlet property="edit" destination="Dry-SQ-6Pz" id="BX5-uq-MfM"/>
                         <outlet property="fsCalendar" destination="wNQ-6C-3IL" id="Ize-q5-G23"/>
                         <outlet property="mainText" destination="nkG-AQ-yWf" id="gij-ES-uo3"/>
