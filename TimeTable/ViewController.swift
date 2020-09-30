@@ -19,10 +19,15 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     @IBOutlet weak var edit: UIToolbar!
     @IBOutlet weak var share: UIToolbar!
     @IBOutlet weak var mainText: UITextView!
+    @IBOutlet weak var titleText: UILabel!
     
     @IBOutlet weak var constraintHeight: NSLayoutConstraint!
     
-    var date = String()
+    var temp: UILabel = {
+        let tempLabel = UILabel()
+        return tempLabel
+    }()
+    var date = [String]()
     static var selectedDate: Date?
     
     let formatter:DateFormatter = DateFormatter()
@@ -70,10 +75,10 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             statusBar?.backgroundColor = UIColor(named: "StatusbarColor")
         }
         
-        token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "saveData"), object: nil, queue: OperationQueue.main) {
-            [weak self] (noti) in
-            self?.fsCalendar.reloadData()
-        }
+//        token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "saveData"), object: nil, queue: OperationQueue.main) {
+//            [weak self] (noti) in
+//            self?.fsCalendar.reloadData()
+//        }
     }
     
     override func viewDidLoad() {
@@ -94,6 +99,8 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             return
         }
         self.setNeedsStatusBarAppearanceUpdate()
+        self.view.layoutIfNeeded()
+        self.view.setNeedsLayout()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -112,6 +119,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
                 self.add.isEnabled = true
                 return
             }
+            self.titleText.text = "  제목: " + arr[1]
             self.mainText.text = arr[2]
             self.activeButton()
             self.add.isEnabled = false
@@ -125,23 +133,22 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         self.constraintHeight.constant = bounds.height
-        self.mainText.sizeToFit()
         self.view.layoutIfNeeded()
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        
-        ref.child("diary").child(formatter.string(from: date)).observeSingleEvent(of: .value) { (DataSnapshot) in
-            guard let arr = DataSnapshot.value as? [String] else{
+        ref.child("diary").child(formatter.string(from: date)).observeSingleEvent(of: .value) { (snapshot) in
+            guard let arr = snapshot.value as? [String] else{
                 return
             }
-            if arr[0] == self.formatter.string(from: date){
-                self.date = arr[0]
-            }
+            self.date.append(arr[0])
         }
-        if(self.date == self.formatter.string(from: date)){
+        
+        if self.date.contains(formatter.string(from: date)) {
+            print("성공")
             return 1
-        }else {
+        } else {
+            print("ㅅㄱㅋㅋ")
             return 0
         }
     }
@@ -190,6 +197,14 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         delete.isHidden = true
         edit.isHidden = true
         share.isHidden = true
+    }
+    
+    func setLoadDate() -> Int{
+        return 1
+    }
+    
+    func failLoadDate() -> Int {
+        return 0
     }
 }
 

@@ -71,22 +71,34 @@
                                 </items>
                             </toolbar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nkG-AQ-yWf">
-                                <rect key="frame" x="20" y="509" width="374" height="255"/>
+                                <rect key="frame" x="20" y="552" width="374" height="212"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUI-BG-0bV">
+                                <rect key="frame" x="20" y="496" width="374" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="bFo-ZG-7KM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2id-CG-Pkz"/>
+                            <constraint firstItem="TUI-BG-0bV" firstAttribute="leading" secondItem="nkG-AQ-yWf" secondAttribute="leading" id="6cW-Rc-gSx"/>
                             <constraint firstItem="Dry-SQ-6Pz" firstAttribute="centerX" secondItem="nkG-AQ-yWf" secondAttribute="centerX" id="6dI-aB-n8b"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="92e-MI-tcB"/>
-                            <constraint firstItem="nkG-AQ-yWf" firstAttribute="top" secondItem="wNQ-6C-3IL" secondAttribute="bottom" constant="21" id="FCd-W6-zvJ"/>
+                            <constraint firstItem="TUI-BG-0bV" firstAttribute="top" secondItem="wNQ-6C-3IL" secondAttribute="bottom" constant="8" symbolic="YES" id="FqV-Ed-F22"/>
                             <constraint firstItem="grS-m4-15y" firstAttribute="leading" secondItem="Dry-SQ-6Pz" secondAttribute="leading" id="G8Y-yr-LfR"/>
                             <constraint firstItem="grS-m4-15y" firstAttribute="trailing" secondItem="Dry-SQ-6Pz" secondAttribute="trailing" id="Imj-TN-TTM"/>
+                            <constraint firstItem="TUI-BG-0bV" firstAttribute="trailing" secondItem="nkG-AQ-yWf" secondAttribute="trailing" id="JpZ-op-W4e"/>
+                            <constraint firstItem="nkG-AQ-yWf" firstAttribute="top" secondItem="TUI-BG-0bV" secondAttribute="bottom" constant="8" symbolic="YES" id="U5V-Ra-C6C"/>
                             <constraint firstItem="grS-m4-15y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Vrn-aX-XSz"/>
                             <constraint firstItem="grS-m4-15y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="WKZ-MW-for"/>
                             <constraint firstItem="wNQ-6C-3IL" firstAttribute="top" secondItem="grS-m4-15y" secondAttribute="bottom" id="d69-Vz-uEi"/>
@@ -109,11 +121,12 @@
                         <outlet property="fsCalendar" destination="wNQ-6C-3IL" id="Ize-q5-G23"/>
                         <outlet property="mainText" destination="nkG-AQ-yWf" id="gij-ES-uo3"/>
                         <outlet property="share" destination="Dry-SQ-6Pz" id="VNa-vv-8Mg"/>
+                        <outlet property="titleText" destination="TUI-BG-0bV" id="bsd-gA-QLa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="133"/>
+            <point key="canvasLocation" x="957.97101449275374" y="132.58928571428572"/>
         </scene>
         <!--Preview View Controller-->
         <scene sceneID="leA-UM-qqW">
@@ -529,7 +542,7 @@
             <color red="0.27500000596046448" green="0.70200002193450928" blue="0.61599999666213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="NavigationColor">
-            <color red="0.31400001049041748" green="0.66699999570846558" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.29399999976158142" green="0.66699999570846558" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -49,6 +49,7 @@ class PreviewViewController: UIViewController {
             self.date.text = arr[0]
             self.titleText.text = arr[1]
             self.contentText.text = arr[2]
+            self.locationText.text = arr[3]
         }
         
         token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "getLocation"), object: nil, queue: OperationQueue.main) {
@@ -89,6 +90,7 @@ class PreviewViewController: UIViewController {
         arrValue.append(date.text!)
         arrValue.append(titleText.text!)
         arrValue.append(contentText.text)
+        arrValue.append(locationText.text!)
         
         ref.child("diary").child(date.text!).setValue(arrValue)
         
