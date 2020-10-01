@@ -9,6 +9,7 @@ target 'TimeTable' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   pod 'Floaty'
   pod 'GoogleMaps'
   pod 'GooglePlaces'	

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 import Floaty
 
 class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePresentationControllerDelegate {
@@ -102,6 +103,10 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
             let ref = Database.database().reference()
             ref.child("diary").child(dateLabel.text!).setValue(arrValue)
             
+            if let image = someImageView.image {
+                upLoadImage(img: image)
+            }
+
             doneAlert()
         }
     }
@@ -149,6 +154,25 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         someImageView.bottomAnchor.constraint(equalTo: contentTextField.topAnchor, constant: -10).isActive = true
         
         contentTextField.topAnchor.constraint(equalTo: someImageView.bottomAnchor, constant: -10).isActive = true
+    }
+    
+    func upLoadImage(img: UIImage){
+        var data = Data()
+        data = img.jpegData(compressionQuality: 0.8)!
+        
+        let storage = Storage.storage(url: "gs://timetable-d35ce.appspot.com/")
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/png"
+        
+        storage.reference().child("diary").child(dateLabel.text!).putData(data, metadata: metaData){
+            (metaData, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }else{
+                print("성공")
+            }
+        }
     }
 }
 

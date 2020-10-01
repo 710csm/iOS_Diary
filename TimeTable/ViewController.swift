@@ -75,6 +75,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
             statusBar?.backgroundColor = UIColor(named: "StatusbarColor")
         }
+        
     }
     
     override func viewDidLoad() {
@@ -99,7 +100,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
             return
         }
         self.setNeedsStatusBarAppearanceUpdate()
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -127,6 +127,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         }) { (error) in
             print(error.localizedDescription)
         }
+        fsCalendar.reloadData()
         
         return true
     }
@@ -146,9 +147,8 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         
         if self.date.contains(formatter.string(from: date)) {
             return 1
-        } else {
-            return 0
         }
+        return 0
     }
     
     // MARK: Action Method
@@ -197,14 +197,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         edit.isHidden = true
         share.isHidden = true
         diaryView.layer.borderWidth = 0
-    }
-    
-    func setLoadDate() -> Int{
-        return 1
-    }
-    
-    func failLoadDate() -> Int {
-        return 0
     }
 }
 
