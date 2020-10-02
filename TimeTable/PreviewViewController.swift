@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 import Floaty
 
 class PreviewViewController: UIViewController {
@@ -51,6 +52,7 @@ class PreviewViewController: UIViewController {
             self.contentText.text = arr[2]
             self.locationText.text = arr[3]
         }
+        downLoadImage()
         
         token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "getLocation"), object: nil, queue: OperationQueue.main) {
             [weak self] (noti) in
@@ -117,8 +119,21 @@ class PreviewViewController: UIViewController {
         someImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         someImageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         someImageView.bottomAnchor.constraint(equalTo: contentText.topAnchor, constant: -10).isActive = true
-       
     }
+    
+    func downLoadImage(){
+        let storage = Storage.storage()
+        let urlStr = "gs://timetable-d35ce.appspot.com/2020-09-30" + formatter.string(from: ViewController.selectedDate!)
+        storage.reference(forURL: urlStr).downloadURL { (url, error) in
+            guard let data = NSData(contentsOf: url!) else {
+                return
+            }
+            let image = UIImage(data: data as Data)
+            self.someImageView.image = image
+        }
+        
+    }
+    
 }
 
 extension PreviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

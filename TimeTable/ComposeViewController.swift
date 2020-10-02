@@ -22,7 +22,6 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
     let floaty = Floaty()
     let formatter:DateFormatter = DateFormatter()
     let imagePicker = UIImagePickerController()
-    let storage = Storage.storage()
     
     let someImageView: UIImageView = {
         let theImageView = UIImageView()
@@ -161,6 +160,7 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         var data = Data()
         data = img.jpegData(compressionQuality: 0.8)!
         
+        let storage = Storage.storage()
         let metaData = StorageMetadata()
         metaData.contentType = "image/png"
         
