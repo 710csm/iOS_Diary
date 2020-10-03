@@ -18,10 +18,13 @@ FSCalendar를 활용하여 달력을 구현하고 Firebase를 통해 값을 저�
 
 - 기본 화면으로 날짜를 선택하고 상단의 +버튼을 누르면 새 일기를 작성할 수 있고 이미 일기가 작성되어 있으면 화면 아래에 나오는 미리보기로 읽어볼 수 있다    
 <img width="380" alt="스크린샷 2020-09-18 오후 4 37 02" src="https://user-images.githubusercontent.com/45002556/93570168-90bae200-f9cd-11ea-906f-cb7a5888d91d.png">     
-<img width="383" alt="스크린샷 2020-09-18 오후 4 37 13" src="https://user-images.githubusercontent.com/45002556/93570385-e2fc0300-f9cd-11ea-99af-be44926b697e.png">    
+<img width="378" alt="스크린샷 2020-10-03 오후 10 20 39" src="https://user-images.githubusercontent.com/45002556/94992813-63725480-05c7-11eb-92ec-03f8cf4749e8.png">   
 
 - 선택한 날짜의 일기를 작성 제목과 내용을 입력하고 저장하면 Firebase에 일기를 저장      
-<img width="376" alt="스크린샷 2020-09-18 오후 4 37 28" src="https://user-images.githubusercontent.com/45002556/93570435-f909c380-f9cd-11ea-9808-a9e5765d33f3.png">   
+<img width="360" alt="스크린샷 2020-10-03 오후 10 19 40" src="https://user-images.githubusercontent.com/45002556/94992751-07a7cb80-05c7-11eb-965a-fe164ab2a512.png">   
+
+- 위치 정보를 추가할 수 있다   
+<img width="370" alt="스크린샷 2020-10-03 오후 10 19 19" src="https://user-images.githubusercontent.com/45002556/94992781-32921f80-05c7-11eb-98ff-4a7e9d2b8041.png">
 
 - 특정 날짜를 누르고 공유 버튼을 누르면 메신저와 다른 앱을 통해 공유를 할 수 있다    
 <img width="378" alt="스크린샷 2020-09-18 오후 4 37 47" src="https://user-images.githubusercontent.com/45002556/93570527-19d21900-f9ce-11ea-900d-50d8b2d91e6c.png">   
@@ -32,7 +35,10 @@ FSCalendar를 활용하여 달력을 구현하고 Firebase를 통해 값을 저�
 - 내용이 긴 경우에 달력을 위로 올려 나머지 내용을 확인할 수 있다   
 ![Sep-17-2020 01-38-09](https://user-images.githubusercontent.com/45002556/93570814-8c42f900-f9ce-11ea-8762-9e12c8cf4feb.gif)   
 
+- 플로팅 메뉴를 추가해 사진이나 위치 정보를 추가할 수 있다   
+![float menu](https://user-images.githubusercontent.com/45002556/94992726-e47d1c00-05c6-11eb-8017-eb6eeb769721.gif)   
+
 - 전체 화면 구성도   
-<img width="520" alt="스크린샷 2020-09-16 오전 9 48 45" src="https://user-images.githubusercontent.com/45002556/93279871-4980f580-f803-11ea-8339-18edf6441d1f.png">
+<img width="840" alt="스크린샷 2020-10-03 오후 10 20 12" src="https://user-images.githubusercontent.com/45002556/94992701-c0b9d600-05c6-11eb-8257-bf064b62f4b7.png">
 
    
