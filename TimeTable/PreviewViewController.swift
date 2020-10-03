@@ -29,6 +29,7 @@ class PreviewViewController: UIViewController {
         return theImageView
     }()
     
+    var flag: String = "0"
     var token:NSObjectProtocol?
     deinit {
         if let token = token {
@@ -51,8 +52,10 @@ class PreviewViewController: UIViewController {
             self.titleText.text = arr[1]
             self.contentText.text = arr[2]
             self.locationText.text = arr[3]
+            self.flag = arr[4]
+            self.downLoadImage()
         }
-        downLoadImage()
+        
         
         token = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "getLocation"), object: nil, queue: OperationQueue.main) {
             [weak self] (noti) in
@@ -122,16 +125,19 @@ class PreviewViewController: UIViewController {
     }
     
     func downLoadImage(){
-        let storage = Storage.storage()
-        let urlStr = "gs://timetable-d35ce.appspot.com/2020-09-30" + formatter.string(from: ViewController.selectedDate!)
-        storage.reference(forURL: urlStr).downloadURL { (url, error) in
-            guard let data = NSData(contentsOf: url!) else {
-                return
+        if flag == "1" {
+            let storage = Storage.storage()
+            let urlStr = "gs://timetable-d35ce.appspot.com/" + formatter.string(from: ViewController.selectedDate!)
+            storage.reference(forURL: urlStr).downloadURL { (url, error) in
+                guard let data = NSData(contentsOf: url!) else {
+                    return
+                }
+                print("test")
+                let image = UIImage(data: data as Data)
+                self.someImageView.image = image
+                self.someImageViewConstraints()
             }
-            let image = UIImage(data: data as Data)
-            self.someImageView.image = image
         }
-        
     }
     
 }
@@ -140,7 +146,7 @@ extension PreviewViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] {
             someImageView.image = image as? UIImage
-            someImageViewConstraints() //This function is outside the viewDidLoad function that controls the constraints
+            someImageViewConstraints()
         }
         dismiss(animated: true, completion: nil)
     }

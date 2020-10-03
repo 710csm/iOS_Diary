@@ -30,7 +30,9 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
         return theImageView
     }()
 
-    var arrValue = [String]()    
+    var arrValue = [String]()
+    var flag: String = "0"
+    
     var token:NSObjectProtocol?
     deinit {
         if let token = token {
@@ -100,13 +102,15 @@ class ComposeViewController: UIViewController, UITextFieldDelegate, UIAdaptivePr
             arrValue.append(contentTextField.text)
             arrValue.append(locationTextField.text!)
             
+            if let image = someImageView.image {
+                upLoadImage(img: image)
+                flag = "1"
+            }
+            arrValue.append(flag)
+            
             let ref = Database.database().reference()
             ref.child("diary").child(dateLabel.text!).setValue(arrValue)
             
-            if let image = someImageView.image {
-                upLoadImage(img: image)
-            }
-
             doneAlert()
         }
     }
